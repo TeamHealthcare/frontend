@@ -1,0 +1,338 @@
+<html ng-app="schedulerApp"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+	
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="scheduler-decleration-tree.js"></script>
+	<script type="text/javascript" src="angular-sandbox.js"></script>
+    <script type="text/javascript" src="sandbox.js"></script>
+  </head><body>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="nav nav-pills">
+              <li class="active">
+                <a href="login.html">Logout</a>
+              </li>
+              <li>
+                <a href="ElectronicPatientForm.html">Patient</a>
+              </li>
+              <li>
+                <a href="Scheduler.html">Scheduler<br></a>
+              </li>
+              <li>
+                <a href="LabOrder.html">Lab Order<br></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Scheduler</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <div ng-controller="DropdownCtrl">
+              <div uib-dropdown dropdown-append-to-body on-toggle="toggled(open)">
+                <button id="sched-dropdown-button" type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle>
+                  SCHED <span class="fa fa-caret-down"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="sched-dropdown-button">
+                  <li ng-repeat="choice in dropdownModals">
+                    <a ng-show="choice.show" data-toggle="modal" href="#{{choice.modalID}}">{{choice.text}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div class="form-group">
+              <input type="text" ng-model="inputText" class="form-control" id="physicianSearchIDForm" placeholder="Enter Physician Name">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div id="phsyiciansList" ng-controller="PhysiciansList">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Contact Number</th>
+                    <th>Normal Schedule</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="physician in physicians | filter:inputText" ng-click="setCurPhysician(physician)" ng-class="{selected : curPhysician.id === physician.id}">
+                    <td>{{physician.id}}</td>
+                    <td>{{physician.name}}</td>
+                    <td>{{physician.contact}}</td>
+                    <td>{{physician.schedule}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            <div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODALS -->
+    <div ng-controller="PhysicianEditor" class="modal fade" id="physician-editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Manage Physician Information</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="modalPhysicianManagerName" class="control-label">Name</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" ng-model="physicianEditor.name" class="form-control" id="modalPhysicianManagerName" placeholder={{curPhysician.name}}>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="modalPhysicianManagerContact" class="control-label">Contact #</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" ng-model="physicianEditor.contact" class="form-control" id="modalPhysicianManagerContact" placeholder={{curPhysician.contact}}>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="modalPhysicianManagerContact" class="control-label">Schedule</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" ng-model="physicianEditor.schedule" class="form-control" id="modalPhysicianManagerContact" placeholder={{curPhysician.schedule}}>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-default" data-dismiss="modal">Close</a>
+            <a class="btn btn-primary" ng-click="editPhysician('physician-editor')">Save changes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+	<div ng-controller="RemovePhysician" class="modal fade" id="physician-remover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Remove Phsyician</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label>Name</label>
+                </div>
+                <div class="col-sm-10">
+                  {{curPhysician.name}}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label>Contact #</label>
+                </div>
+                <div class="col-sm-10">
+                  {{curPhysician.contact}}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label>Schedule</label>
+                </div>
+                <div class="col-sm-10">
+                  {{curPhysician.schedule}}
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-default" data-dismiss="modal">Close</a>
+            <a class="btn btn-danger" ng-click="removePhysician('physician-remover')">Remove</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div ng-controller="PhysicianAdder" class="modal fade" id="physician-adder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="addPhysicianForm" method="post" class="form-horizontal">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title">Add a New Physician</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="modalPhysicianAdderName" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10" ng-class="{'has-error' : !physicianAdder.name}"">
+                  <input type="text" ng-model="physicianAdder.name" class="form-control" name="name" id="modalPhysicianAdderName">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="modalPhysicianManagerContact" class="col-sm-2 control-label">Contact #</label>
+                <div class="col-sm-10" ng-class="{'has-error' : !physicianAdder.contact}">
+                  <input type="text" ng-model="physicianAdder.contact" class="form-control" name="contact" id="modalPhysicianAdderContact">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="modalPhysicianManagerContact" class="col-sm-2 control-label">Schedule</label>
+                <div class="col-sm-10" ng-class="{'has-error' : !physicianAdder.schedule}">
+                  <input type="text" ng-model="physicianAdder.schedule" class="form-control" name="schedule" id="modalPhysicianAdderContact">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a class="btn btn-default" data-dismiss="modal">Close</a>
+              <button type="submit" class="btn btn-primary" ng-click='validateInput("physician-adder")'>Save Changes</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="physician-availability-editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Physician Time Off</h4>
+          </div>
+          <div class="modal-body">
+            <div ng-controller="PhysicianAvailabilityPicker">
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dp1.date" show-button-bar=false is-open="dp1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="dp1.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dp2.date" show-button-bar=false is-open="dp2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="dp2.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div uib-timepicker ng-model="tp1.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                </div>
+                <div class="col-md-6">
+                  <div uib-timepicker ng-model="tp2.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                </div>
+              </div>
+              <div class="row"> 
+                <div class="col-md-6">
+                    Hours step:
+                  <select class="form-control" ng-model="hstep" ng-options="opt for opt in options.hstep"></select>
+                </div>
+                <div class="col-md-6">
+                    Minutes step:
+                  <select class="form-control" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a class="btn btn-default" data-dismiss="modal">Close</a>
+              <a class="btn btn-primary">Save changes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="patient-scheduler" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Patient Scheduler</h4>
+          </div>
+          <div class="modal-body">
+            <div ng-controller="PatientSchedulerPicker">
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dp1.date" show-button-bar=false is-open="dp1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="dp1.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dp2.date" show-button-bar=false is-open="dp2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="dp2.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div uib-timepicker ng-model="tp1.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                </div>
+                <div class="col-md-6">
+                  <div uib-timepicker ng-model="tp2.time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                </div>
+              </div>
+              <div class="row"> 
+                <div class="col-md-6">
+                    Hours step:
+                  <select class="form-control" ng-model="hstep" ng-options="opt for opt in options.hstep"></select>
+                </div>
+                <div class="col-md-6">
+                    Minutes step:
+                  <select class="form-control" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a class="btn btn-default" data-dismiss="modal">Close</a>
+              <a class="btn btn-primary">Save changes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body></html>
