@@ -1,0 +1,13 @@
+.selected {
+    background-color: #3177b4;
+    border-color: #204f77;
+}
+
+.selected > td{
+    color: #FFFFFF
+}
+
+#phsyiciansList > table > tbody > tr:hover{
+    background-color: #3177b4;
+    border-color: #204f77;
+} 

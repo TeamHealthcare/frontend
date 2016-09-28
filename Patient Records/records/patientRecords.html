@@ -1,0 +1,119 @@
+<html ng-app="patientRecordsApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="patientRecords-decleration-tree.js"></script>
+    <script type="text/javascript" src="angular-sandbox.js"></script>
+    <script type="text/javascript" src="sandbox.js"></script>
+  </head>
+  <body>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="nav nav-pills">
+              <li class="active">
+                <a href="#">Logout</a>
+              </li>
+              <li>
+                <a href="#">Patient</a>
+              </li>
+              <li>
+                <a href="#">Scheduler</a>
+              </li>
+              <li>
+                <a href="#">Lab Order</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row" id="patientsList" ng-controller="patientsList">
+          <h3>Patient Records</h3>
+          <div class="col-md-5">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Patient ID</th>
+                    <th>Last Name</th>
+                    <th>First Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="patient in patients | filter:inputText" ng-click="setCurPatient(patient)" ng-class="{selected : curPatient.id === patient.id}">
+                    <td>{{patient.id}}</td>
+                    <td>{{patient.lastName}}</td>
+                    <td>{{patient.firstName}}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+          <div class="col-md-7">
+          <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="firstName" class="control-label">First Name</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="firstName" placeholder="{{curPatient.firstName}}">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="lastName" class="control-label">Last Name</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="lastName" placeholder="{{curPatient.lastName}}">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="contact" class="control-label">Contact</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="contact" placeholder="{{curPatient.contact}}">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="dateOfBirth" class="control-label">Date of Birth</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="dateOfBirth" placeholder="{{curPatient.dateOfBirth}}">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="gender" class="control-label">Gender</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="gender" placeholder="{{curPatient.gender}}">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <label for="primaryPhysician" class="control-label">Primary Physician</label>
+                </div>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="primaryPhysician" placeholder="{{curPatient.primaryPhysician}}">
+                </div>
+              </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
