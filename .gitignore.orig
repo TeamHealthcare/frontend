@@ -43,7 +43,18 @@ Icon
 
 # Node modules
 /node_modules
+<<<<<<< HEAD
 /src/node_modules
+||||||| merged common ancestors
+
+# Bower components
+/src/components
+=======
+src/node_modules
+
+# Bower components
+/src/components
+>>>>>>> a500ee712b04ea5e58f6bca70490571475ce81bd
 
 # JetBrains
 .idea
