@@ -2,10 +2,10 @@
  * Master Controller
  */
 
-angular.module('RDash')
-    .controller('MasterCtrl', ['$scope', '$cookieStore', MasterCtrl]);
+angular.module('hcare')
+    .controller('MasterController', ['$scope', '$cookieStore', MasterController]);
 
-function MasterCtrl($scope, $cookieStore) {
+function MasterController($scope, $cookieStore) {
     /**
      * Sidebar Toggle & Cookie Control
      */
