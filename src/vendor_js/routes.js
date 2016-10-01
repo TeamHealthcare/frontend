@@ -30,9 +30,29 @@ angular.module('hcare').config(['$stateProvider', '$urlRouterProvider',
             })
 
         // Application routes
-            .state('main.index', {
-                url: '/home',
-                templateUrl: 'templates/dashboard.html'
+            .state('main.records', {
+                url: '/records',
+                template: '<patient-records></patient-records>'
+            })
+            .state('main.scheduler', {
+                url: '/scheduler',
+                template: '<physician-scheduler></physician-scheduler>'
+            })
+            .state('main.lab', {
+                url: '/lab',
+                template: '<lab-order-tracking></lab-order-tracking>'
+            })
+            .state('main.pharmacy', {
+                url: '/pharmacy',
+                template: '<pharmacy-order-tracking></pharmacy-order-tracking>'
+            })
+            .state('main.billing', {
+                url: '/billing',
+                template: '<insurance-billing></insurance-billing>'
+            })
+            .state('main.equipment', {
+                url: '/equipment',
+                template: '<equipment-inventory></equipment-inventory>'
             })
         //     .state('tables', {
         //         url: '/tables',
@@ -40,3 +60,22 @@ angular.module('hcare').config(['$stateProvider', '$urlRouterProvider',
         //     });
     }
 ]);
+
+// <li class="sidebar-list">
+//     <a href="#/record">Patient Record <span class="menu-icon fa fa-tachometer"></span></a>
+//     </li>
+//     <li class="sidebar-list">
+//     <a href="#/scheduler">Physician Scheduler <span class="menu-icon fa fa-table"></span></a>
+//     </li>
+//     <li class="sidebar-list">
+//     <a href="#/lab-order-tracking">Lab<span class="menu-icon fa fa-table"></span></a>
+//     </li>
+//     <li class="sidebar-list">
+//     <a href="#/pharmacy-order-tracking">Pharmacy<span class="menu-icon fa fa-table"></span></a>
+//     </li>
+//     <li class="sidebar-list">
+//     <a href="#/billing">Billing <span class="menu-icon fa fa-table"></span></a>
+//     </li>
+//     <li class="sidebar-list">
+//     <a href="#/inventory">Equipment <span class="menu-icon fa fa-table"></span></a>
+//     </li>

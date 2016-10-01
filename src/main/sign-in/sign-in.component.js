@@ -1,6 +1,6 @@
 (function () {
     angular.module('hcare').component('signIn', {
-        templateUrl: 'templates/sign-in/sign-in.html',
+        templateUrl: 'main/sign-in/sign-in.html',
         controller: SignInController
     });
 
@@ -8,12 +8,12 @@
     function SignInController($state) {
         var ctrl = this;
 
-        var username;
-        var password;
+        var username = '';
+        var password = '';
 
         ctrl.signin = function () {
             console.log('Clicked Sign In!');
-            $state.go('main.index')
+            $state.go('main.records')
         }
     }
 })();

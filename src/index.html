@@ -7,19 +7,18 @@
 	<title>Healthcare</title>
   <!-- STYLES -->
   <!-- build:css lib/css/main.min.css -->
-  <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="../node_modules/font-awesome/css/font-awesome.css">
-  <link rel="stylesheet" type="text/css" href="../node_modules/rdash-ui/dist/css/rdash.css">
+  <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="node_modules/rdash-ui/dist/css/rdash.css">
   <!-- endbuild -->
   <!-- SCRIPTS -->
   <!-- build:js lib/vendor_js/main.min.js -->
-  <script type="text/javascript" src="../node_modules/angular/angular.js"></script>
-  <script type="text/javascript" src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
-  <script type="text/javascript" src="../node_modules/angular-cookies/angular-cookies.js"></script>
-  <script type="text/javascript" src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+  <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+  <script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+  <script type="text/javascript" src="node_modules/angular-cookies/angular-cookies.js"></script>
+  <script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="node_modules/angular-mocks/angular-mocks.js"></script>
   <!-- endbuild -->
-  <!-- Vendor Scripts -->
-  <!--<script type="text/javascript" src="vendor_js/vendor.min.js"></script>-->
 
   <!--Application Scripts-->
   <!-- build:js lib/app/app.min.js -->
@@ -32,10 +31,18 @@
   <script src="vendor_js/directives/widget-body.js"></script>
   <script src="vendor_js/directives/widget-footer.js"></script>
   <script src="vendor_js/directives/widget-header.js"></script>
+
+  <!--Services-->
+  <script src="main/shared/services/data-service.js"></script>
+  <script src="main/shared/models.js"></script>
   <!--Components-->
-
   <script src="main/sign-in/sign-in.component.js"></script>
-
+  <script src="main/patient-records/patient-records.component.js"></script>
+  <script src="main/insurance-billing/insurance-billing.component.js"></script>
+  <script src="main/equipment-inventory/equipment-inventory.component.js"></script>
+  <script src="main/lab-order-tracking/lab-order-tracking.component.js"></script>
+  <script src="main/pharmacy-order-tracking/pharmacy-order-tracking.component.js"></script>
+  <script src="main/physician-scheduler/physician-scheduler.component.js"></script>
   <!-- endbuild -->
 
 </head>
