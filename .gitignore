@@ -43,9 +43,7 @@ Icon
 
 # Node modules
 /node_modules
-
-# Bower components
-/src/components
+/src/node_modules
 
 # JetBrains
 .idea
