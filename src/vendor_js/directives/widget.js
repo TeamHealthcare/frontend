@@ -3,7 +3,7 @@
  */
 
 angular
-    .module('RDash')
+    .module('hcare')
     .directive('rdWidget', rdWidget);
 
 function rdWidget() {

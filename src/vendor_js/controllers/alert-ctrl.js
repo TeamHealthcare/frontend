@@ -3,7 +3,7 @@
  */
 
 angular
-    .module('RDash')
+    .module('hcare')
     .controller('AlertsCtrl', ['$scope', AlertsCtrl]);
 
 function AlertsCtrl($scope) {

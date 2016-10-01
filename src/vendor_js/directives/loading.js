@@ -4,7 +4,7 @@
  */
 
 angular
-    .module('RDash')
+    .module('hcare')
     .directive('rdLoading', rdLoading);
 
 function rdLoading() {

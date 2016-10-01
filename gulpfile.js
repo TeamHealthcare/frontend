@@ -2,13 +2,18 @@ var gulp = require('gulp'),
     usemin = require('gulp-usemin'),
     wrap = require('gulp-wrap'),
     connect = require('gulp-connect'),
+    imagemin = require('gulp-imagemin'),
     watch = require('gulp-watch'),
     minifyCss = require('gulp-cssnano'),
     minifyJs = require('gulp-uglify'),
+    sourcemaps = require('gulp-sourcemaps'),
+    runSequence = require('run-sequence'),
+    cache = require('gulp-cache'),
     concat = require('gulp-concat'),
     less = require('gulp-less'),
     rename = require('gulp-rename'),
-    minifyHTML = require('gulp-htmlmin');
+    minifyHTML = require('gulp-htmlmin'),
+    del = require('del');
 
 var paths = {
     scripts: 'src/vendor_js/**/*.*',
@@ -21,6 +26,12 @@ var paths = {
         'node_modules/rdash-ui/fonts/**/*.{ttf,woff,woff2,eof,svg}']
 };
 
+/*
+Clean dist folder
+ */
+gulp.task('clean', function () {
+    return del.sync('dist')
+});
 /**
  * Handle bower components from index
  */
@@ -30,6 +41,7 @@ gulp.task('usemin', function() {
             js: [minifyJs(), 'concat'],
             css: [minifyCss({keepSpecialComments: 0}), 'concat'],
         }))
+        .pipe(sourcemaps.write('maps'))
         .pipe(gulp.dest('dist/'));
 });
 
@@ -53,6 +65,7 @@ gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-
 
 gulp.task('custom-images', function() {
     return gulp.src(paths.images)
+        .pipe(cache(imagemin()))
         .pipe(gulp.dest('dist/img'));
 });
 
@@ -71,7 +84,7 @@ gulp.task('custom-less', function() {
 
 gulp.task('custom-templates', function() {
     return gulp.src(paths.templates)
-        .pipe(minifyHTML())
+        // .pipe(cache(minifyHTML()))
         .pipe(gulp.dest('dist/templates'));
 });
 
@@ -81,7 +94,7 @@ gulp.task('custom-templates', function() {
 gulp.task('watch', function() {
     gulp.watch([paths.images], ['custom-images']);
     gulp.watch([paths.styles], ['custom-less']);
-    gulp.watch([paths.scripts], ['custom-vendor_js']);
+    gulp.watch([paths.scripts], ['custom-js']);
     gulp.watch([paths.templates], ['custom-templates']);
     gulp.watch([paths.index], ['usemin']);
 });
@@ -106,5 +119,7 @@ gulp.task('livereload', function() {
 /**
  * Gulp tasks
  */
-gulp.task('build', ['usemin', 'build-assets', 'build-custom']);
+gulp.task('build', function (callback) {
+    runSequence('clean', ['usemin', 'build-assets', 'build-custom'], callback)
+});
 gulp.task('default', ['build', 'webserver', 'livereload', 'watch']);
