@@ -19,19 +19,30 @@
   <script type="text/javascript" src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
   <!-- endbuild -->
   <!-- Vendor Scripts -->
-  <script type="text/javascript" src="vendor_js/vendor.min.js"></script>
+  <!--<script type="text/javascript" src="vendor_js/vendor.min.js"></script>-->
 
   <!--Application Scripts-->
   <!-- build:js lib/app/app.min.js -->
-  <script src="sign-in/sign-in.component.js"></script>
+  <script src="vendor_js/module.js"></script>
+  <script src="vendor_js/routes.js"></script>
+  <script src="vendor_js/controllers/alert-ctrl.js"></script>
+  <script src="vendor_js/controllers/master-ctrl.js"></script>
+  <script src="vendor_js/directives/loading.js"></script>
+  <script src="vendor_js/directives/widget.js"></script>
+  <script src="vendor_js/directives/widget-body.js"></script>
+  <script src="vendor_js/directives/widget-footer.js"></script>
+  <script src="vendor_js/directives/widget-header.js"></script>
+  <!--Components-->
+
+  <script src="main/sign-in/sign-in.component.js"></script>
+
   <!-- endbuild -->
 
 </head>
 <body>
 
+<div ui-view>
 
-Hi
-<div ui-view></div>
-Ho
+</div>
 </body>
 </html>

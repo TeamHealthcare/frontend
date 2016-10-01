@@ -20,6 +20,7 @@ var paths = {
     styles: 'src/less/**/*.*',
     images: 'src/img/**/*.*',
     templates: 'src/templates/**/*.html',
+    componentTemplates: 'src/main/**/*.html',
     index: 'src/index.html',
     fonts: ['node_modules/font-awesome/**/*.{ttf,woff,woff2,eof,svg}',
         'node_modules/bootstrap/**/*.{ttf,woff,woff2,eof,svg}',
@@ -38,7 +39,7 @@ gulp.task('clean', function () {
 gulp.task('usemin', function() {
     return gulp.src(paths.index)
         .pipe(usemin({
-            js: [minifyJs(), 'concat'],
+            // js: [minifyJs(), 'concat'],
             css: [minifyCss({keepSpecialComments: 0}), 'concat'],
         }))
         .pipe(sourcemaps.write('maps'))
@@ -61,7 +62,7 @@ gulp.task('copy-fonts', function() {
 /**
  * Handle custom files
  */
-gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates']);
+gulp.task('build-custom', ['custom-images', 'custom-js', 'custom-less', 'custom-templates', 'main-templates']);
 
 gulp.task('custom-images', function() {
     return gulp.src(paths.images)
@@ -88,6 +89,11 @@ gulp.task('custom-templates', function() {
         .pipe(gulp.dest('dist/templates'));
 });
 
+gulp.task('main-templates', function() {
+    return gulp.src(paths.componentTemplates)
+    // .pipe(cache(minifyHTML()))
+        .pipe(gulp.dest('dist/templates'));
+});
 /**
  * Watch custom files
  */

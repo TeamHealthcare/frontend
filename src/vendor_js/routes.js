@@ -24,16 +24,16 @@ angular.module('hcare').config(['$stateProvider', '$urlRouterProvider',
             })
 
         //        Sign in
-            .state('main.signin', {
+            .state('signin', {
                 url: '/signin',
                 template: '<sign-in></sign-in>'
             })
 
         // Application routes
-        //     .state('index', {
-        //         url: '/',
-        //         templateUrl: 'templates/dashboard.html'
-        //     })
+            .state('main.index', {
+                url: '/home',
+                templateUrl: 'templates/dashboard.html'
+            })
         //     .state('tables', {
         //         url: '/tables',
         //         templateUrl: 'templates/tables.html'
