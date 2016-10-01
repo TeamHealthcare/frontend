@@ -11,4 +11,4 @@
 
 
 ####Where are things located?
-![](/path/to/img.jpg)
+![directory structure](https://www.evernote.com/l/AAOYeZyCbaFFir_JAZPUQ_tel05VIAsZItIB/image.png)
