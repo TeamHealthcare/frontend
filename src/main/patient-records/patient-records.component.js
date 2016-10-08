@@ -22,6 +22,11 @@
                 })
         }
 
+    ///--------Patient List Component ------///////
+        function openAddPatientModal() {
+
+        }
+
 
     }
 })();
