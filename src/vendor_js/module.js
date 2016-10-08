@@ -1,8 +1,9 @@
 angular.module('hcare',
-    ['ui.bootstrap',
+    [       'ui.bootstrap',
             'ui.router',
             'ngCookies',
-            'ngMockE2E']) //mock backend
+            'ngMockE2E'
+    ]) //mock backend
 
     .run(['$rootScope', '$state', '$stateParams',
             function ($rootScope, $state, $stateParams) {

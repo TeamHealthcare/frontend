@@ -32,7 +32,7 @@ angular.module('hcare').config(['$stateProvider', '$urlRouterProvider',
         // Application routes
             .state('main.records', {
                 url: '/records',
-                template: '<patient-records></patient-records>'
+                template: '<electronic-patient-record></electronic-patient-record>'
             })
             .state('main.scheduler', {
                 url: '/scheduler',
