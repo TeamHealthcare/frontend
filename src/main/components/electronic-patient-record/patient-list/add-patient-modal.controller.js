@@ -3,16 +3,18 @@
     angular.module('hcare')
         .controller('addPatientModalController', addPatientModalController);
 
-    addPatientModalController.$inject = ['$uibModalInstance'];
-    function addPatientModalController($uibModalInstance) {
+    addPatientModalController.$inject = ['$uibModalInstance', 'DataService'];
+    function addPatientModalController($uibModalInstance, DataService) {
 
             var ctrl = this;
-            this.ok = ok;
-            this.cancel = cancel;
+            ctrl.ok = ok;
+            ctrl.cancel = cancel;
+            ctrl.patient = {};
 
             function ok() {
                 console.log('ok pressed');
-                $uibModalInstance.close();
+                //TODO: Save new patient, then close()
+                $uibModalInstance.close(ctrl.patient);
             }
 
             function cancel() {

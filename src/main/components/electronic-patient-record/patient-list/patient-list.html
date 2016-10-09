@@ -2,15 +2,24 @@
         ng-click="$ctrl.openAddPatientModal()">
   <span class="glyphicon glyphicon-plus"></span> Add Patient
 </button>
-<h3>Patients</h3>
-<div class="row">
-  <div class="col-md-4">
-    <ul>
-      <li ng-repeat="patient in $ctrl.patients">
-        <a  ui-sref="main.records.patientDetail({ patientId: patient.id })">
-          {{patient.name}}
-        </a>
-      </li>
-    </ul>
+
+<div class="container container-fluid">
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Patient List</h3>
+      <div class="well">
+        <ul class="list-group">
+          <li class="list-item" ng-repeat="patient in $ctrl.patients">
+            <a href="" ng-click="$ctrl.currentPatient = patient; $ctrl.selected = true">
+              {{patient.name}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <patient-detail ng-if="$ctrl.selected" patient="$ctrl.currentPatient"></patient-detail>
+    </div>
   </div>
 </div>
