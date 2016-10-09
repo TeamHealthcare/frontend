@@ -4,7 +4,7 @@
         controller: PatientListController
     });
 
-    PatientListController.$inject = ['$uibModal', 'DataService']
+    PatientListController.$inject = ['$uibModal', 'DataService'];
     function PatientListController($uibModal, DataService) {
         var ctrl = this;
         ctrl.patients = [];
@@ -17,13 +17,12 @@
             DataService.getPatientRecords()
                 .then(function (response) {
                     ctrl.patients = response.data
-
                 })
         }
-
+        
         function openAddPatientModal() {
             var modalInstance = $uibModal.open({
-                templateUrl: 'main/electronic-patient-record/patient-list/add-patient-modal.html',
+                templateUrl: 'main/components/electronic-patient-record/patient-list/add-patient-modal.html',
                 controller: 'addPatientModalController',
                 controllerAs: '$ctrl'
             });
