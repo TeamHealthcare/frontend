@@ -3,3 +3,4 @@ angular.module('hcare')
         base: '',
         patients: '/patients'
     });
+
