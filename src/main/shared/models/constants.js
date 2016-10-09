@@ -1,6 +1,7 @@
 angular.module('hcare')
     .constant('URLS', {
         base: '',
-        patients: '/patients'
+        patients: '/patients',
+        encounters: '/encounters'
     });
 
