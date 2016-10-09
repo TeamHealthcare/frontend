@@ -24,4 +24,4 @@
         return Patient;
     }());
     models.Patient = Patient;
-})();
+})(models || (models = {}));

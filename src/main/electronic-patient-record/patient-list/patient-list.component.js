@@ -18,6 +18,7 @@
                 .then(function (response) {
                     console.log('got patient records');
                     ctrl.patients = response.data
+
                 })
         }
 
