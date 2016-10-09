@@ -1,6 +1,6 @@
 (function () {
     angular.module('hcare').component('physicianScheduler', {
-        templateUrl: 'main/physician-scheduler/physician-scheduler.html',
+        templateUrl: 'main/components/physician-scheduler/physician-scheduler.html',
         controller: PhysicianSchedulerController
     });
 

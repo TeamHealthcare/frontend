@@ -1,6 +1,6 @@
 (function () {
     angular.module('hcare').component('patientList', {
-        templateUrl: 'main/electronic-patient-record/patient-list/patient-list.html',
+        templateUrl: 'main/components/electronic-patient-record/patient-list/patient-list.html',
         controller: PatientListController
     });
 
@@ -16,7 +16,6 @@
         function getData() {
             DataService.getPatientRecords()
                 .then(function (response) {
-                    console.log('got patient records');
                     ctrl.patients = response.data
 
                 })

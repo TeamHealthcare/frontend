@@ -26,8 +26,6 @@
          * @returns {Promise} a $q promise object containing an array of records
          */
         function getPatientRecords(config) {
-            console.log('getting patient records');
-            console.log(URLS.patients);
             return $http.get(URLS.patients)
         }
 
