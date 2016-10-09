@@ -19,7 +19,7 @@
                     ctrl.patients = response.data
                 })
         }
-        
+
         function openAddPatientModal() {
             var modalInstance = $uibModal.open({
                 templateUrl: 'main/components/electronic-patient-record/patient-list/add-patient-modal.html',

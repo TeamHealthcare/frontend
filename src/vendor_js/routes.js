@@ -34,6 +34,10 @@ angular.module('hcare').config(['$stateProvider', '$urlRouterProvider',
                 url: '/records',
                 template: '<electronic-patient-record></electronic-patient-record>'
             })
+            .state('main.records.patientDetail', {
+                url: '/records/patients/:patientId',
+                template: '<patient-detail></patient-detail>'
+            })
             .state('main.scheduler', {
                 url: '/scheduler',
                 template: '<physician-scheduler></physician-scheduler>'
