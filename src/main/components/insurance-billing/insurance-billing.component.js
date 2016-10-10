@@ -1,6 +1,6 @@
 (function () {
     angular.module('hcare').component('insuranceBilling', {
-        templateUrl: 'main/insurance-billing/insurance-billing.html',
+        templateUrl: 'main/components/insurance-billing/insurance-billing.html',
         controller: InsuranceBillingController
     });
 

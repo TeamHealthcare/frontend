@@ -8,6 +8,7 @@
 
         this.getDataPromise = getDataPromise;
         this.getPatientRecords = getPatientRecords;
+        this.getMedicalEncounters = getMedicalEncounters;
         //Implementation
         /**
          * Generic http request with given options
@@ -26,9 +27,17 @@
          * @returns {Promise} a $q promise object containing an array of records
          */
         function getPatientRecords(config) {
-            console.log('getting patient records');
-            console.log(URLS.patients);
             return $http.get(URLS.patients)
+        }
+
+        /**
+         * Get Medical Encounters
+         *
+         * @param config optional Angular $http config object
+         * @returns {Promise} a $q promise object containing an array of medical encounters
+         */
+        function getMedicalEncounters(config) {
+            return $http.get(URLS.encounters)
         }
 
     }

@@ -1,0 +1,25 @@
+<button class="btn btn-primary"
+        ng-click="$ctrl.openAddMedicalEncounterModal()">
+  <span class="glyphicon glyphicon-plus"></span> Add Medical Encounter
+</button>
+
+<div class="container container-fluid">
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Medical Encounters</h3>
+      <div class="well">
+        <ul class="list-group">
+          <li class="list-item" ng-repeat="medicalEncounter in $ctrl.medicalEncounters">
+            <a href="" ng-click="$ctrl.currentMedicalEncounter = medicalEncounter; $ctrl.selected = true">
+              Date: {{medicalEncounter.encounterDate}} - {{medicalEncounter.practitioner}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <medical-encounter-detail ng-if="$ctrl.selected" encounter="$ctrl.currentMedicalEncounter"></medical-encounter-detail>
+    </div>
+  </div>
+</div>
