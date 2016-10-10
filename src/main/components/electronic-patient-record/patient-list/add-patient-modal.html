@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <h3 class="modal-title">Add a patient</h3>
+</div>
+<div class="modal-body">
+  <form name="add-patient-form" class="form">
+    <div class="form-group">
+      <label>Name</label>
+      <input ng-model="$ctrl.patient.name" type="text" class="form-control" placeholder="Full Name">
+    </div>
+    <div class="form-group">
+      <label>Address</label>
+      <input ng-model="$ctrl.patient.address" type="text" class="form-control" placeholder="Address">
+    </div>
+    <div class="form-group">
+      <label>Date of Birth</label>
+      <input ng-model="$ctrl.patient.dateOfBirth" type="date" class="form-control" placeholder="Date of Birth">
+    </div>
+    <div class="form-group">
+      <label>Gender</label>
+      <input ng-model="$ctrl.patient.gender" name="gender" type="radio" class="form-control" value="male">Male
+      <input ng-model="$ctrl.patient.gender" name="gender" type="radio" class="form-control" value="female">Female
+    </div>
+    <div class="form-group">
+      <label>Insurance Carrier</label>
+      <input ng-model="$ctrl.patient.insurance" type="text" class="form-control" placeholder="Insurance Carrier">
+    </div>
+    <div class="form-group">
+      <label>Physician</label>
+      <input ng-model="$ctrl.patient.physician" type="text" class="form-control" placeholder="Physician">
+    </div>
+  </form>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+  </div>
+</div>

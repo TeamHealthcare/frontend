@@ -1,6 +1,6 @@
 (function () {
     angular.module('hcare').component('labOrderTracking', {
-        templateUrl: 'main/lab-order-tracking/lab-order-tracking.html',
+        templateUrl: 'main/components/lab-order-tracking/lab-order-tracking.html',
         controller: LabOrderTrackingController
     });
 

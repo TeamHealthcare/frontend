@@ -1,6 +1,6 @@
 (function () {
     angular.module('hcare').component('signIn', {
-        templateUrl: 'main/sign-in/sign-in.html',
+        templateUrl: 'main/components/sign-in/sign-in.html',
         controller: SignInController
     });
 
@@ -12,7 +12,6 @@
         var password = '';
 
         ctrl.signin = function () {
-            console.log('Clicked Sign In!');
             $state.go('main.records')
         }
     }
