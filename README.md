@@ -3,7 +3,7 @@
 1. Clone repo and cd into directory
 2. ```cd src ```
 3. install dependencies: ```npm install```
-4. type ```lite-server``` while inside src directory
+4. type ```lite-server``` while inside src directory (you probably should install lite-server globally. Type npm install -g lite-server)
 
 ####Small issues
 
