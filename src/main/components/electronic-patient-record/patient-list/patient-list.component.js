@@ -5,9 +5,9 @@
     });
 
     var Patient = models.Patient;
-    PatientListController.$inject = ['$uibModal', 'DataService'];
+    PatientListController.$inject = ['$uibModal', 'DataService', 'toaster'];
 
-    function PatientListController($uibModal, DataService) {
+    function PatientListController($uibModal, DataService, toaster) {
         var ctrl = this;
         ctrl.patients = [];
         ctrl.currentPatient = new Patient();
@@ -21,7 +21,12 @@
                 .then(function (response) {
                     if (response.status == '200') {
                         ctrl.patients = response.data.payload;
+                    } else {
+                        displayError()
                     }
+                })
+                .catch(function (error) {
+                    displayError()
                 })
         }
 
@@ -37,6 +42,14 @@
             }, function () {
                 //modal dismissed
             });
+        }
+
+
+        //Private methods
+        function displayError(message) {
+            var msg = 'There was an error!';
+            if (message) {msg += '\n Message: ' + message}
+            toaster.error(msg)
         }
     }
 

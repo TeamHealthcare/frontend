@@ -18,6 +18,7 @@
   <script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
   <script type="text/javascript" src="node_modules/angular-cookies/angular-cookies.js"></script>
   <script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="node_modules/angular-animate/angular-animate.js"></script>
   <script src="node_modules/angular-mocks/angular-mocks.js"></script>
   <script src="node_modules/angularjs-toaster/toaster.js"></script>
   <!-- endbuild -->
@@ -60,7 +61,12 @@
 
 </head>
 <body>
-
+<toaster-container
+    toaster-options="{
+  'close-button': true,
+   'position-class': 'toast-top-full-width'
+   }">
+</toaster-container>
 <div ui-view>
 
 </div>

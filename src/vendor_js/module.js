@@ -2,6 +2,8 @@ angular.module('hcare',
     [       'ui.bootstrap',
         'ui.router',
         'ngCookies',
+        'toaster',
+        'ngAnimate'
         //'ngMockE2E'
     ]) //mock backend
 
