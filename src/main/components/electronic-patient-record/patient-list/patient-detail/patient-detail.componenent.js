@@ -13,6 +13,9 @@
         var ctrl = this;
         ctrl.patient;
 
+        /**
+        Component initialization
+         */
         ctrl.$onInit = getPatientInfo;
 
         function getPatientInfo() {

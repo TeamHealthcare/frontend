@@ -11,7 +11,12 @@
             ctrl.cancel = cancel;
             ctrl.patient = {};
 
-            function ok() {
+        /**
+         * Submit the information for adding a patient. After closing, if it is successful, the
+         * patient object is returned to the calling component to display. We can either append it
+         * directly to the patient list or reload the updated list from the server.
+         */
+        function ok() {
                 console.log('ok pressed');
                 //TODO: Save new patient, then close()
                 console.log(ctrl.patient);
