@@ -19,8 +19,9 @@
         function getData() {
             DataService.getPatientRecords()
                 .then(function (response) {
-                    console.log(response);
-                    ctrl.patients = response.data;
+                    if (response.status == '200') {
+                        ctrl.patients = response.data.payload;
+                    }
                 })
         }
 
@@ -32,9 +33,7 @@
             });
 
             addPatientModalInstance.result.then(function (patient) {
-                //TODO: Add patient to list of patients
-                console.log(patient);
-                ctrl.patients.push(patient);
+                ctrl.getData()
             }, function () {
                 //modal dismissed
             });

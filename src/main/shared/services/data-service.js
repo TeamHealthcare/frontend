@@ -27,9 +27,21 @@
          * @returns {Promise} a $q promise object containing an array of records
          */
         function getPatientRecords(config) {
-            return $http.get(URLS.patients)
+            return $http.get(URLS.base + URLS.patients)
         }
 
+        /**
+         * Add Patient
+         *
+         * @param patient patient to add as an object
+         * @param config optional Angular $http config object
+         * @returns {Promise} a $q promise object containing an array of records
+         */
+        function addPatient(patient, config) {
+            return $http.post(URLS.base + URLS.addPatient, patient, config)
+        }
+
+        //TODO: Get medical encounters when ready in backend
         /**
          * Get Medical Encounters
          *
@@ -37,7 +49,7 @@
          * @returns {Promise} a $q promise object containing an array of medical encounters
          */
         function getMedicalEncounters(config) {
-            return $http.get(URLS.encounters)
+            return $http.get(URLS.base + URLS.encounters)
         }
 
     }

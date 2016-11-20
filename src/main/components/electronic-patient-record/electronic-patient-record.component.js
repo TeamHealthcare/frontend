@@ -4,8 +4,8 @@
         controller: PatientRecordsController
     });
 
-    PatientRecordsController.$inject = [];
-    function PatientRecordsController() {
+    PatientRecordsController.$inject = ['DataService'];
+    function PatientRecordsController(DataService) {
         var ctrl = this;
 
     }

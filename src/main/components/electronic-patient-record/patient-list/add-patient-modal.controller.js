@@ -14,6 +14,8 @@
             function ok() {
                 console.log('ok pressed');
                 //TODO: Save new patient, then close()
+                console.log(ctrl.patient);
+                DataService.addPatient(patient)
                 $uibModalInstance.close(ctrl.patient);
             }
 

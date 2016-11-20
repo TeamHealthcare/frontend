@@ -16,14 +16,15 @@
 
         ctrl.$onInit = getData;
 
+        //TODO: Get medical encounters when ready in backend
         function getData() {
-            DataService.getMedicalEncounters()
-                .then(function (response) {
-                    console.log(response);
-                    ctrl.medicalEncounters = response.data;
-                })
+        //    DataService.getMedicalEncounters()
+        //        .then(function (response) {
+        //            console.log(response);
+        //            ctrl.medicalEncounters = response.data.payload;
+        //        })
         }
-    //
+
         function openAddMedicalEncounterModal() {
             var addMedicalEncounterModalInstance = $uibModal.open({
                 templateUrl: 'main/components/electronic-patient-record/medical-encounters/add-medical-encounter-modal.html',

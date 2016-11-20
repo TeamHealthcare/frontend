@@ -5,28 +5,28 @@
   <form name="add-patient-form" class="form">
     <div class="form-group">
       <label>Name</label>
-      <input ng-model="$ctrl.patient.name" type="text" class="form-control" placeholder="Full Name">
+      <input ng-model="$ctrl.patient.PatientName" type="text" class="form-control" placeholder="Full Name">
     </div>
     <div class="form-group">
       <label>Address</label>
-      <input ng-model="$ctrl.patient.address" type="text" class="form-control" placeholder="Address">
+      <input ng-model="$ctrl.patient.Address" type="text" class="form-control" placeholder="Address">
     </div>
     <div class="form-group">
       <label>Date of Birth</label>
-      <input ng-model="$ctrl.patient.dateOfBirth" type="date" class="form-control" placeholder="Date of Birth">
+      <input ng-model="$ctrl.patient.DateOfBirth" type="date" class="form-control" placeholder="Date of Birth">
     </div>
     <div class="form-group">
       <label>Gender</label>
-      <input ng-model="$ctrl.patient.gender" name="gender" type="radio" class="form-control" value="male">Male
-      <input ng-model="$ctrl.patient.gender" name="gender" type="radio" class="form-control" value="female">Female
+      <input ng-model="$ctrl.patient.Gender" name="gender" type="radio" class="form-control" value="male">Male
+      <input ng-model="$ctrl.patient.Gender" name="gender" type="radio" class="form-control" value="female">Female
     </div>
     <div class="form-group">
       <label>Insurance Carrier</label>
-      <input ng-model="$ctrl.patient.insurance" type="text" class="form-control" placeholder="Insurance Carrier">
+      <input ng-model="$ctrl.patient.InsuranceId" type="number" class="form-control" placeholder="Insurance Carrier">
     </div>
     <div class="form-group">
       <label>Physician</label>
-      <input ng-model="$ctrl.patient.physician" type="text" class="form-control" placeholder="Physician">
+      <input ng-model="$ctrl.patient.Physician" type="text" class="form-control" placeholder="Physician">
     </div>
   </form>
   <div class="modal-footer">
