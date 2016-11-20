@@ -9,10 +9,21 @@
 
     function PatientListController($uibModal, DataService, toaster) {
         var ctrl = this;
+
+        /**
+         * Model
+         */
         ctrl.patients = [];
         ctrl.currentPatient = new Patient();
+
         ctrl.openAddPatientModal = openAddPatientModal;
+        ctrl.getData = getData;
+
+        /**
+         * To manage the tab selection
+         */
         ctrl.selected = false;
+
 
         ctrl.$onInit = getData;
 

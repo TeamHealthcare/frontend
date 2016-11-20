@@ -9,7 +9,14 @@
             var ctrl = this;
             ctrl.ok = ok;
             ctrl.cancel = cancel;
-            ctrl.patient = {};
+            ctrl.patient = {
+                PatientName: 'Robert Smith',
+                Address: '123 Main st',
+                DateOfBirth: new Date('02-23-2012'),
+                Gender: 'Male',
+                InsuranceId: 1,
+                Physician: 'Applesauce'
+            };
 
         /**
          * Submit the information for adding a patient. After closing, if it is successful, the
@@ -20,7 +27,8 @@
                 console.log('ok pressed');
                 //TODO: Save new patient, then close()
                 console.log(ctrl.patient);
-                DataService.addPatient(patient)
+            console.log(DataService);
+                DataService.addPatient(ctrl.patient);
                 $uibModalInstance.close(ctrl.patient);
             }
 

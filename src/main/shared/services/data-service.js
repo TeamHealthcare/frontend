@@ -6,10 +6,19 @@
     DataService.$inject = ['URLS','$http', '$q'];
     function DataService(URLS, $http, $q) {
 
+        /**
+         * Public API
+         */
         this.getDataPromise = getDataPromise;
         this.getPatientRecords = getPatientRecords;
         this.getMedicalEncounters = getMedicalEncounters;
-        //Implementation
+        this.addPatient = addPatient;
+
+
+        /**
+         * Implementation
+         */
+
         /**
          * Generic http request with given options
          *
