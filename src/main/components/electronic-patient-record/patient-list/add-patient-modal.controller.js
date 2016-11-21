@@ -14,7 +14,7 @@
                 Address: '123 Main st',
                 DateOfBirth: new Date('02-23-2012'),
                 Gender: 'Male',
-                InsuranceId: 1,
+                InsuranceCarrierId: '1',
                 Physician: 'Applesauce'
             };
 
