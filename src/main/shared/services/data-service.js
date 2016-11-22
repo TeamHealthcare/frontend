@@ -12,6 +12,7 @@
         this.getDataPromise = getDataPromise;
         this.getPatientRecords = getPatientRecords;
         this.getMedicalEncounters = getMedicalEncounters;
+        this.getInsuranceCarriers = getInsuranceCarriers;
         this.addPatient = addPatient;
 
 
@@ -25,8 +26,8 @@
          * @param config Angular $http config object
          * @returns {Promise} a $q promise object
          */
-        function getDataPromise(config) {
-            return $http.get(URLS.base, config);
+        function getDataPromise(url,config) {
+            return $http.get(url, config);
         }
 
         /**
@@ -40,6 +41,16 @@
         }
 
         /**
+         * Get Insurance Carriers
+         *
+         * @param config optional Angular $http config object
+         * @returns {Promise} a $q promise object containing an array of records
+         */
+        function getInsuranceCarriers(config) {
+            return $http.get(URLS.base + URLS.insuranceCarriers)
+        }
+
+        /**
          * Add Patient
          *
          * @param patient patient to add as an object
@@ -47,7 +58,12 @@
          * @returns {Promise} a $q promise object containing an array of records
          */
         function addPatient(patient, config) {
-            return $http.post(URLS.base + URLS.addPatient, patient, config)
+            console.log('adding patient');
+            console.log('url: ' + URLS.base + URLS.addPatient);
+            console.log('The patient is');
+            console.log(patient);
+
+            return $http.post(URLS.base + URLS.addPatient, patient)
         }
 
         //TODO: Get medical encounters when ready in backend
