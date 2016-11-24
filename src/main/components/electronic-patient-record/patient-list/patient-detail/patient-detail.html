@@ -2,32 +2,42 @@
 <div class="well">
   <ul>
     <li>
-      <strong>Name:</strong> {{$ctrl.patient.name}}
+      <strong>Name:</strong> {{$ctrl.patient.PatientName}}
     </li>
     <li>
-      <strong>Phone: </strong> {{$ctrl.patient.phone}}
+      <strong>Phone: </strong> {{$ctrl.patient.PhoneNumber}}
     </li>
     <li>
-      <strong>Address: </strong> {{$ctrl.patient.address}}
+      <strong>Address: </strong> {{$ctrl.patient.Address}}
     </li>
     <li>
-      <strong>Insurance: </strong> {{$ctrl.patient.insurance}}
+      <strong>City: </strong> {{$ctrl.patient.City}}
     </li>
     <li>
-      <strong>Date of Birth: </strong> {{$ctrl.patient.dateOfBirth}}
+      <strong>State: </strong> {{$ctrl.patient.State}}
     </li>
     <li>
-      <strong>Gender: </strong> {{$ctrl.patient.gender}}
+      <strong>Zip: </strong> {{$ctrl.patient.ZipCode}}
     </li>
     <li>
-      <strong>Physician: </strong> {{$ctrl.patient.physician}}
+      <strong>Insurance: </strong> {{$ctrl.patient.InsuranceCarrierId}}
     </li>
     <li>
-      <strong>Medications: </strong> {{$ctrl.patient.medications}}
+      <strong>Date of Birth: </strong> {{$ctrl.patient.DateOfBirth | date: 'medium'}}
     </li>
     <li>
-      <strong>Appointments: </strong> {{$ctrl.patient.appointments}}
+      <strong>Gender: </strong> {{$ctrl.patient.Gender}}
     </li>
+    <!--//TODO: Add this back as soon as this is completed on server-->
+    <!--<li>-->
+      <!--<strong>Physician: </strong> {{$ctrl.patient.Physician}}-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<strong>Medications: </strong> {{$ctrl.patient.Medications}}-->
+    <!--</li>-->
+    <!--<li>-->
+      <!--<strong>Appointments: </strong> {{$ctrl.patient.Appointments}}-->
+    <!--</li>-->
 
   </ul>
 </div>

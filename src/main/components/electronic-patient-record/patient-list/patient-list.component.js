@@ -5,22 +5,39 @@
     });
 
     var Patient = models.Patient;
-    PatientListController.$inject = ['$uibModal', 'DataService'];
+    PatientListController.$inject = ['$uibModal', 'DataService', 'toaster'];
 
-    function PatientListController($uibModal, DataService) {
+    function PatientListController($uibModal, DataService, toaster) {
         var ctrl = this;
+
+        /**
+         * Model
+         */
         ctrl.patients = [];
         ctrl.currentPatient = new Patient();
+
         ctrl.openAddPatientModal = openAddPatientModal;
+        ctrl.getData = getData;
+
+        /**
+         * To manage the tab selection
+         */
         ctrl.selected = false;
+
 
         ctrl.$onInit = getData;
 
         function getData() {
             DataService.getPatientRecords()
                 .then(function (response) {
-                    console.log(response);
-                    ctrl.patients = response.data;
+                    if (response.status == '200') {
+                        ctrl.patients = response.data.payload;
+                    } else {
+                        displayError()
+                    }
+                })
+                .catch(function (error) {
+                    displayError()
                 })
         }
 
@@ -32,12 +49,18 @@
             });
 
             addPatientModalInstance.result.then(function (patient) {
-                //TODO: Add patient to list of patients
-                console.log(patient);
-                ctrl.patients.push(patient);
+                ctrl.getData()
             }, function () {
                 //modal dismissed
             });
+        }
+
+
+        //Private methods
+        function displayError(message) {
+            var msg = 'There was an error!';
+            if (message) {msg += '\n Message: ' + message}
+            toaster.error(msg)
         }
     }
 

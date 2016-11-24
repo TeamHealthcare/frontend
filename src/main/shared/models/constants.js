@@ -1,7 +1,8 @@
 angular.module('hcare')
     .constant('URLS', {
-        base: '',
+        base: 'http://localhost:8888/hcare/backend/v1',
         patients: '/patients',
-        encounters: '/encounters'
+        addPatient: '/addepatient',
+        encounters: '/encounters',
+        insuranceCarriers: '/carriers'
     });
-
