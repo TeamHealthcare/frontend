@@ -8,7 +8,7 @@
 
         var ctrl = this;
         ctrl.patient = {};
-        ctrl.insuranceCarriers = {};
+        ctrl.insuranceCarriers = [];
         ctrl.getInsuranceCarriers = getInsuranceCarriers;
         ctrl.ok = ok;
         ctrl.cancel = cancel;
@@ -54,7 +54,6 @@
          */
         function ok() {
             console.log('ok pressed');
-            //TODO: Save new patient, then close()
             console.log(ctrl.patient);
             var patientToAdd = angular.copy(ctrl.patient);
             patientToAdd.DateOfBirth = patientToAdd.DateOfBirth.toISOString();

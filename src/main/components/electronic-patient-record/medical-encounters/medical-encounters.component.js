@@ -5,9 +5,9 @@
     });
 
     var MedicalEncounter = models.MedicalEncounter;
-    MedicalEncountersController.$inject = ['$uibModal', 'DataService'];
+    MedicalEncountersController.$inject = ['$uibModal', 'DataService', 'toaster'];
     //
-    function MedicalEncountersController($uibModal, DataService) {
+    function MedicalEncountersController($uibModal, DataService, toaster) {
         var ctrl = this;
         ctrl.medicalEncounters = [];
         ctrl.currentmedicalEncounter = new MedicalEncounter();
@@ -18,11 +18,16 @@
 
         //TODO: Get medical encounters when ready in backend
         function getData() {
-        //    DataService.getMedicalEncounters()
-        //        .then(function (response) {
-        //            console.log(response);
-        //            ctrl.medicalEncounters = response.data.payload;
-        //        })
+           DataService.getMedicalEncounters()
+               .then(function (response) {
+                   console.log(response);
+                   ctrl.medicalEncounters = response.data.payload;
+               })
+               .catch(function (error) {
+                   console.log('There was an error');
+                   console.log(error);
+                   // toaster.pop('error', error.data)
+               })
         }
 
         function openAddMedicalEncounterModal() {

@@ -49,7 +49,7 @@
             });
 
             addPatientModalInstance.result.then(function (patient) {
-                ctrl.getData()
+                ctrl.patients.push(patient)
             }, function () {
                 //modal dismissed
             });

@@ -3,6 +3,7 @@ angular.module('hcare')
         base: 'http://localhost:8888/hcare/backend/v1',
         patients: '/patients',
         addPatient: '/addepatient',
-        encounters: '/encounters',
+        encounters: '/getMedicalEncounters',
+        addEncounter: '/addencounter',
         insuranceCarriers: '/carriers'
     });

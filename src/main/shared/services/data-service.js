@@ -3,8 +3,8 @@
     angular.module('hcare')
         .service('DataService', DataService);
 
-    DataService.$inject = ['URLS','$http', '$q'];
-    function DataService(URLS, $http, $q) {
+    DataService.$inject = ['URLS','$http'];
+    function DataService(URLS, $http) {
 
         /**
          * Public API
@@ -13,7 +13,11 @@
         this.getPatientRecords = getPatientRecords;
         this.getMedicalEncounters = getMedicalEncounters;
         this.getInsuranceCarriers = getInsuranceCarriers;
+        this.getLabOrders = getLabOrders;
         this.addPatient = addPatient;
+        this.addEncounter = addEncounter;
+        /**/
+
 
 
         /**
@@ -51,6 +55,16 @@
         }
 
         /**
+         * Get Lab Orders
+         *
+         * @param config optional Angular $http config object
+         * @returns {Promise} a $q promise object containing an array of records
+         */
+        function getLabOrders(config) {
+            return $http.get(URLS.base + URLS.labOrders)
+        }
+
+        /**
          * Add Patient
          *
          * @param patient patient to add as an object
@@ -66,7 +80,6 @@
             return $http.post(URLS.base + URLS.addPatient, patient)
         }
 
-        //TODO: Get medical encounters when ready in backend
         /**
          * Get Medical Encounters
          *
@@ -75,6 +88,22 @@
          */
         function getMedicalEncounters(config) {
             return $http.get(URLS.base + URLS.encounters)
+        }
+
+        /**
+         * Add Medical Encounter
+         *
+         * @param encounter encounter to add as an object
+         * @param config optional Angular $http config object
+         * @returns {Promise} a $q promise object containing an array of records
+         */
+        function addEncounter(encounter, config) {
+            console.log('adding encounter');
+            console.log('url: ' + URLS.base + URLS.addEncounter);
+            console.log('The encounter is');
+            console.log(encounter);
+
+            return $http.post(URLS.base + URLS.addEncounter, encounter)
         }
 
     }
