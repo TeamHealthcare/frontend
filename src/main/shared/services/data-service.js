@@ -19,7 +19,6 @@
         /**/
 
 
-
         /**
          * Implementation
          */
@@ -68,17 +67,17 @@
          * Add Patient
          *
          * @param patient patient to add as an object
-         * @Param editing if we are editing an existing patient
-         * @param config optional Angular $http config object
+         * @param editing if we are editing an existing patient
          * @returns {Promise} a $q promise object containing an array of records
          */
-        function addPatient(patient, editing, config) {
-            console.log('adding patient');
-            console.log('url: ' + URLS.base + URLS.addPatient);
-            console.log('The patient is');
-            console.log(patient);
-
-            return $http.post(URLS.base + URLS.addPatient, patient)
+        function addPatient(patient, editing) {
+            var method = editing ? 'PUT': 'POST';
+            var url = editing ? URLS.editPatient + '/' + patient.PatientId : URLS.addPatient;
+            return $http( {
+                method: method,
+                url: URLS.base + url,
+                data: patient
+            })
         }
 
         /**
@@ -96,7 +95,6 @@
          *
          * @param encounter encounter to add as an object
          * @param editing if we are editing an existing encounter
-         * @param config optional Angular $http config object
          * @returns {Promise} a $q promise object containing an array of records
          */
         function addEncounter(encounter, editing) {

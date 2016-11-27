@@ -1,38 +1,38 @@
-<h3>Medical Encounter Detail</h3>
+
+<span class="h3">Medical Encounter Detail</span> <button class="glyphicon glyphicon-edit btn btn-md btn-primary" ng-click="$ctrl.edit($ctrl.encounter)">Edit</button>
 <div class="well">
-  <button class="glyphicon glyphicon-edit btn btn-lg btn-primary" ng-click="$ctrl.edit($ctrl.encounter)">Edit</button>
   <ul>
-    <li>
+    <li class="list-group-item">
       <strong>Date:</strong> {{$ctrl.encounter.EncounterDate}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Practitioner: </strong> {{$ctrl.encounter.Practitioner}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Complaint: </strong> {{$ctrl.encounter.Complaint}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Vital Signs: </strong> {{$ctrl.encounter.VitalSigns}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Notes: </strong> {{$ctrl.encounter.Notes}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Lab Order Id: </strong> {{$ctrl.encounter.LabOrderId}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Pharmacy Order: </strong> {{$ctrl.encounter.PharmacyOrder}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Diagnosis: </strong> {{$ctrl.encounter.Diagnosis}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Treatment Plan: </strong> {{$ctrl.encounter.TreatmentPlan}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Referral: </strong> {{$ctrl.encounter.Referral}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Follow Up Notes: </strong> {{$ctrl.encounter.FollowUpNotes}}
     </li>
   </ul>

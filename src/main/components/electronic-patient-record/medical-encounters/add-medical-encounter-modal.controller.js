@@ -5,10 +5,6 @@
 
     addMedicalEncounterModalController.$inject = ['$uibModalInstance', 'DataService', 'encounter'];
     function addMedicalEncounterModalController($uibModalInstance, DataService, encounter) {
-        console.log('encounter is');
-        console.log(encounter);
-        console.log($uibModalInstance);
-        console.log(DataService);
         var ctrl = this;
 
         ctrl.editing = false;
@@ -29,9 +25,6 @@
             //1
             var date = angular.copy(encounter.EncounterDate);
             encounter.EncounterDate = new Date(date);
-            //2
-            var labOrderId = angular.copy(encounter.LabOrderId);
-            encounter.LabOrderId = labOrderId;
         }
 
         /**
@@ -109,8 +102,6 @@
          * API Implementation
          */
         function ok() {
-            console.log('ok pressed');
-            console.log(ctrl.Encounter);
             var encounterToAdd = angular.copy(ctrl.Encounter);
             encounterToAdd.EncounterDate = encounterToAdd.EncounterDate.toISOString();
             DataService.addEncounter(encounterToAdd, ctrl.editing)

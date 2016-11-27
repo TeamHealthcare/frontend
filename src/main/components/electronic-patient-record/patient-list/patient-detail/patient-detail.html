@@ -1,41 +1,42 @@
 <h3>Patient Detail</h3>
 <div class="well">
-  <ul>
-    <li>
+  <button class="glyphicon glyphicon-edit btn btn-sm btn-primary" ng-click="$ctrl.edit($ctrl.patient)">Edit</button>
+  <ul class="list-group">
+    <li class="list-group-item">
       <strong>Name:</strong> {{$ctrl.patient.PatientName}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Phone: </strong> {{$ctrl.patient.PhoneNumber}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Address: </strong> {{$ctrl.patient.Address}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>City: </strong> {{$ctrl.patient.City}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>State: </strong> {{$ctrl.patient.State}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Zip: </strong> {{$ctrl.patient.ZipCode}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Insurance: </strong> {{$ctrl.patient.InsuranceCarrierId}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Date of Birth: </strong> {{$ctrl.patient.DateOfBirth | date: 'medium'}}
     </li>
-    <li>
+    <li class="list-group-item">
       <strong>Gender: </strong> {{$ctrl.patient.Gender}}
     </li>
     <!--//TODO: Add this back as soon as this is completed on server-->
-    <!--<li>-->
+    <!--<li class="list-group-item">-->
       <!--<strong>Physician: </strong> {{$ctrl.patient.Physician}}-->
     <!--</li>-->
-    <!--<li>-->
+    <!--<li class="list-group-item">-->
       <!--<strong>Medications: </strong> {{$ctrl.patient.Medications}}-->
     <!--</li>-->
-    <!--<li>-->
+    <!--<li class="list-group-item">-->
       <!--<strong>Appointments: </strong> {{$ctrl.patient.Appointments}}-->
     <!--</li>-->
 

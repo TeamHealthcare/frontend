@@ -12,7 +12,8 @@
     MedicalEncounterDetailController.$inject = [];
     function MedicalEncounterDetailController() {
         var ctrl = this;
-        ctrl.encounter = new MedicalEncounter();
+
+        ctrl.encounter;
         ctrl.edit = edit;
 
         ctrl.$onInit = getmedicalEncounterInfo;
@@ -21,7 +22,10 @@
         function edit(encounter) {
             ctrl.onEdit({ encounter: ctrl.encounter });
         }
+
         function getmedicalEncounterInfo() {
+            "use strict";
+
         }
     }
 

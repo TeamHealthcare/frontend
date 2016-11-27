@@ -3,11 +3,12 @@
     angular.module('hcare')
         .controller('addPatientModalController', addPatientModalController);
 
-    addPatientModalController.$inject = ['$uibModalInstance', 'DataService'];
-    function addPatientModalController($uibModalInstance, DataService) {
-
+    addPatientModalController.$inject = ['$uibModalInstance', 'DataService', 'patient'];
+    function addPatientModalController($uibModalInstance, DataService, patient) {
         var ctrl = this;
-        ctrl.patient = {};
+
+        ctrl.editing = false;
+        ctrl.patient;
         ctrl.insuranceCarriers = [];
         ctrl.getInsuranceCarriers = getInsuranceCarriers;
         ctrl.ok = ok;
@@ -18,7 +19,21 @@
          */
         getInsuranceCarriers();
 
-        ctrl.patient = {
+        /**
+         * Check if we have a patient, that means we will be editing a current patient
+         * instead of creating a new one. If that is the case, we need to do a couple of things.
+         * 1. Convert the date of birth string into a Date object
+         */
+        if (patient) {
+            ctrl.editing = true;
+            //1
+            var date = angular.copy(patient.DateOfBirth);
+            patient.DateOfBirth = new Date(date);
+            ctrl.editing = true;
+        }
+
+
+        ctrl.patient = patient || {
             PatientName: 'Robert Smith',
             Address: '123 Main st',
             DateOfBirth: new Date('02-23-2012'),
@@ -53,11 +68,9 @@
          * directly to the patient list or reload the updated list from the server.
          */
         function ok() {
-            console.log('ok pressed');
-            console.log(ctrl.patient);
             var patientToAdd = angular.copy(ctrl.patient);
             patientToAdd.DateOfBirth = patientToAdd.DateOfBirth.toISOString();
-            DataService.addPatient(patientToAdd)
+            DataService.addPatient(patientToAdd, ctrl.editing)
                 .then(function (response) {
                     'Back from adding a patient';
                     console.log(response);
