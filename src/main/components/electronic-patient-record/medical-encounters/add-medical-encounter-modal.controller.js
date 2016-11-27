@@ -3,15 +3,36 @@
     angular.module('hcare')
         .controller('addMedicalEncounterModalController', addMedicalEncounterModalController);
 
-    addMedicalEncounterModalController.$inject = ['$uibModalInstance', 'DataService'];
-    function addMedicalEncounterModalController($uibModalInstance, DataService) {
+    addMedicalEncounterModalController.$inject = ['$uibModalInstance', 'DataService', 'encounter'];
+    function addMedicalEncounterModalController($uibModalInstance, DataService, encounter) {
+        console.log('encounter is');
+        console.log(encounter);
+        console.log($uibModalInstance);
+        console.log(DataService);
         var ctrl = this;
 
+        ctrl.editing = false;
         ctrl.patients = [];
-
+        ctrl.labOrders = [];
         ctrl.getPatients = getPatients;
         ctrl.ok = ok;
         ctrl.cancel = cancel;
+
+        /**
+         * Check if we have an encounter, that means we will be editing a current medical encounter
+         * instead of creating a new one. If that is the case, we need to do a couple of things.
+         * 1. Convert the date string into a Date object
+         * 2. The medical encounter lab order will be  a string. We convert it into a number.
+         */
+        if (encounter) {
+            ctrl.editing = true;
+            //1
+            var date = angular.copy(encounter.EncounterDate);
+            encounter.EncounterDate = new Date(date);
+            //2
+            var labOrderId = angular.copy(encounter.LabOrderId);
+            encounter.LabOrderId = labOrderId;
+        }
 
         /**
          * Get data for modal
@@ -24,7 +45,7 @@
          * Dummy Data
          * @type {{EncounterDate: Date, Practitioner: number, Complaint: string, VitalSigns: string, Notes: string, LabOrderId: number, PharmacyOrder: string, Diagnosis: string, TreatmentPlan: string, Referral: string, FollowUpNotes: string, PatientId: number}}
          */
-        ctrl.Encounter = {
+        ctrl.Encounter = encounter || {
             EncounterDate: new Date('02/12/2016'),
             Practitioner: 3,
             Complaint: 'A lot of pain',
@@ -89,10 +110,10 @@
          */
         function ok() {
             console.log('ok pressed');
-            console.log(ctrl.encounter);
+            console.log(ctrl.Encounter);
             var encounterToAdd = angular.copy(ctrl.Encounter);
             encounterToAdd.EncounterDate = encounterToAdd.EncounterDate.toISOString();
-            DataService.addEncounter(encounterToAdd)
+            DataService.addEncounter(encounterToAdd, ctrl.editing)
                 .then(function (response) {
                     'Back from adding an encounter';
                     console.log(response);

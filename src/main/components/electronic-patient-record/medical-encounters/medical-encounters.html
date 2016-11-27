@@ -19,7 +19,11 @@
       </div>
     </div>
     <div class="col-md-8">
-      <medical-encounter-detail ng-if="$ctrl.selected" encounter="$ctrl.currentMedicalEncounter"></medical-encounter-detail>
+      <medical-encounter-detail ng-if="$ctrl.selected"
+                                encounter="$ctrl.currentMedicalEncounter"
+                                on-edit="$ctrl.openAddMedicalEncounterModal($ctrl.currentMedicalEncounter)"
+      ></medical-encounter-detail>
+      {{$ctrl.currentMedicalEncounter}}
     </div>
   </div>
 </div>

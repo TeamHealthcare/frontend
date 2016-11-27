@@ -30,11 +30,19 @@
                })
         }
 
-        function openAddMedicalEncounterModal() {
+        function openAddMedicalEncounterModal(resolve) {
+            console.log('opening modal and passing in resolve');
+            console.log(resolve);
             var addMedicalEncounterModalInstance = $uibModal.open({
                 templateUrl: 'main/components/electronic-patient-record/medical-encounters/add-medical-encounter-modal.html',
                 controller: 'addMedicalEncounterModalController',
-                controllerAs: '$ctrl'
+                controllerAs: '$ctrl',
+                resolve: {
+                    encounter: function () {
+                        return resolve;
+                    }
+                }
+
             });
 
             addMedicalEncounterModalInstance.result.then(function (encounter) {

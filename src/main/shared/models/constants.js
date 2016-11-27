@@ -5,5 +5,6 @@ angular.module('hcare')
         addPatient: '/addepatient',
         encounters: '/getMedicalEncounters',
         addEncounter: '/addencounter',
+        editEncounter: '/updateencounter',
         insuranceCarriers: '/carriers'
     });
