@@ -1,51 +1,68 @@
 <div class="modal-header">
-  <h3 class="modal-title">Add a medical encounter</h3>
+  <h3 class="modal-title">Add a medical Encounter</h3>
 </div>
 <div class="modal-body">
   <form name="add-patient-form" class="form">
+
+    <div class="form-group">
+      <label>Patient</label>
+      <select name="patient" ng-model="$ctrl.Encounter.PatientId">
+        <option
+            ng-repeat="patient in $ctrl.patients"
+            value="{{patient.PatientId}}">
+          {{patient.PatientName}}
+        </option>
+      </select>
+    </div>
     <div class="form-group">
       <label>Date</label>
-      <input ng-model="$ctrl.encounter.encounterDate" type="datetime" class="form-control" placeholder="Date">
+      <input ng-model="$ctrl.Encounter.EncounterDate" type="date" class="form-control" placeholder="Date">
     </div>
     <div class="form-group">
       <label>Practitioner</label>
-      <input ng-model="$ctrl.encounter.practitioner" type="text" class="form-control" placeholder="Practitioner">
+      <input ng-model="$ctrl.Encounter.Practitioner" type="number" class="form-control" placeholder="Practitioner">
     </div>
     <div class="form-group">
       <label>Complaint</label>
-      <input ng-model="$ctrl.encounter.complaint" type="text" class="form-control" placeholder="Complaint">
+      <input ng-model="$ctrl.Encounter.Complaint" type="text" class="form-control" placeholder="Complaint">
     </div>
     <div class="form-group">
       <label>Vital Signs</label>
-      <input ng-model="$ctrl.encounter.vitalSigns" type="text" class="form-control" placeholder="Vital Signs">
+      <input ng-model="$ctrl.Encounter.VitalSigns" type="text" class="form-control" placeholder="Vital Signs">
     </div>
     <div class="form-group">
       <label>Notes</label>
-      <input ng-model="$ctrl.encounter.notes" type="text" class="form-control" placeholder="Notes">
+      <input ng-model="$ctrl.Encounter.Notes" type="text" class="form-control" placeholder="Notes">
     </div>
     <div class="form-group">
-      <label>Lab Order Id</label>
-      <input ng-model="$ctrl.encounter.labOrderId" type="number" class="form-control" placeholder="Lab Order Id">
+      <label>Lab Order</label>
+      <select name="labOrder" ng-model="$ctrl.Encounter.LabOrderId">
+        <option
+            ng-repeat="labOrder in $ctrl.labOrders"
+            value="{{labOrder.LabOrderId}}">
+          {{labOrder.LabTestDate}}
+        </option>
+      </select>
     </div>
     <div class="form-group">
       <label>Pharmacy Order</label>
-      <input ng-model="$ctrl.encounter.pharmacyOrder" type="text" class="form-control" placeholder="Pharmacy Order">
+      <input ng-model="$ctrl.Encounter.PharmacyOrder" type="text" class="form-control" placeholder="Pharmacy Order">
     </div>
     <div class="form-group">
       <label>diagnosis</label>
-      <input ng-model="$ctrl.encounter.diagnosis" type="text" class="form-control" placeholder="Diagnosis">
+      <input ng-model="$ctrl.Encounter.Diagnosis" type="text" class="form-control" placeholder="Diagnosis">
     </div>
     <div class="form-group">
       <label>Treatment Plan</label>
-      <input ng-model="$ctrl.encounter.treatmentPlan" type="text" class="form-control" placeholder="Treatment Plan">
+      <input ng-model="$ctrl.Encounter.TreatmentPlan" type="text" class="form-control" placeholder="Treatment Plan">
     </div>
     <div class="form-group">
       <label>Referral</label>
-      <input ng-model="$ctrl.encounter.referral" type="text" class="form-control" placeholder="Referral">
+      <input ng-model="$ctrl.Encounter.Referral" type="text" class="form-control" placeholder="Referral">
     </div>
     <div class="form-group">
       <label>Follow Up Notes</label>
-      <input ng-model="$ctrl.encounter.followUpNotes" type="text" class="form-control" placeholder="Follow Up Notes">
+      <input ng-model="$ctrl.Encounter.FollowUpNotes" type="text" class="form-control" placeholder="Follow Up Notes">
     </div>
   </form>
   <div class="modal-footer">

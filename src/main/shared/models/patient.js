@@ -1,22 +1,28 @@
 (function (models) {
     var Patient = (function () {
-        function Patient(id,
-                         name,
-                         phone,
-                         address,
-                         insurance,
-                         dateOfBirth,
-                         gender,
+        function Patient(PatientId,
+                         PatientName,
+                         PhoneNumber,
+                         Address,
+                         City,
+                         State,
+                         ZipCode,
+                         InsuranceCarrierId,
+                         DateOfBirth,
+                         Gender,
                          physician,
                          medications,
                          appointments) {
-            this.id = id;
-            this.name = name;
-            this.phone = phone;
-            this.address = address;
-            this.insurance = insurance;
-            this.dateOfBirth = dateOfBirth;
-            this.gender = gender;
+            this.PatientId = PatientId;
+            this.PatientName = PatientName;
+            this.PhoneNumber = PhoneNumber;
+            this.Address = Address;
+            this.City = City;
+            this.State = State;
+            this.ZipCode = ZipCode;
+            this.InsuranceCarrierId = InsuranceCarrierId;
+            this.DateOfBirth = DateOfBirth;
+            this.Gender = Gender;
             this.physician = physician;
             this.medications = medications;
             this.appointments = appointments;
