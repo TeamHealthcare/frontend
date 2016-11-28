@@ -13,10 +13,12 @@
         ctrl.currentmedicalEncounter = new MedicalEncounter();
         ctrl.openAddMedicalEncounterModal = openAddMedicalEncounterModal;
         ctrl.selected = false;
+        ctrl.getData = getData;
 
-        ctrl.$onInit = getData;
+        ctrl.$onInit = function () {
+            ctrl.getData();
+        };
 
-        //TODO: Get medical encounters when ready in backend
         function getData() {
            DataService.getMedicalEncounters()
                .then(function (response) {
@@ -30,17 +32,21 @@
                })
         }
 
-        function openAddMedicalEncounterModal() {
+        function openAddMedicalEncounterModal(resolve) {
             var addMedicalEncounterModalInstance = $uibModal.open({
                 templateUrl: 'main/components/electronic-patient-record/medical-encounters/add-medical-encounter-modal.html',
                 controller: 'addMedicalEncounterModalController',
-                controllerAs: '$ctrl'
+                controllerAs: '$ctrl',
+                resolve: {
+                    encounter: function () {
+                        return resolve;
+                    }
+                }
+
             });
 
             addMedicalEncounterModalInstance.result.then(function (encounter) {
-                //TODO: Add patient to list of patients
-                console.log(encounter);
-                ctrl.medicalEncounters.push(encounter);
+                ctrl.getData();
             }, function () {
                 //modal dismissed
             });

@@ -2,7 +2,8 @@
     angular.module('hcare').component('medicalEncounterDetail', {
         templateUrl: 'main/components/electronic-patient-record/medical-encounters/medical-encounter-detail/medical-encounter-detail.html',
         bindings: {
-            encounter: '<'
+            encounter: '<',
+            onEdit: '&'
         },
         controller: MedicalEncounterDetailController
     });
@@ -11,11 +12,20 @@
     MedicalEncounterDetailController.$inject = [];
     function MedicalEncounterDetailController() {
         var ctrl = this;
-        ctrl.encounter = new MedicalEncounter();
+
+        ctrl.encounter;
+        ctrl.edit = edit;
 
         ctrl.$onInit = getmedicalEncounterInfo;
 
+
+        function edit(encounter) {
+            ctrl.onEdit({ encounter: ctrl.encounter });
+        }
+
         function getmedicalEncounterInfo() {
+            "use strict";
+
         }
     }
 

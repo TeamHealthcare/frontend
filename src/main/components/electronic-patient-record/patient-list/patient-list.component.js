@@ -41,15 +41,21 @@
                 })
         }
 
-        function openAddPatientModal() {
+        function openAddPatientModal(resolve) {
+            console.log(resolve);
             var addPatientModalInstance = $uibModal.open({
                 templateUrl: 'main/components/electronic-patient-record/patient-list/add-patient-modal.html',
                 controller: 'addPatientModalController',
-                controllerAs: '$ctrl'
+                controllerAs: '$ctrl',
+                resolve: {
+                    patient: function () {
+                        return resolve;
+                    }
+                }
             });
 
             addPatientModalInstance.result.then(function (patient) {
-                ctrl.patients.push(patient)
+                ctrl.getData();
             }, function () {
                 //modal dismissed
             });

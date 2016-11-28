@@ -1,5 +1,8 @@
 <div class="modal-header">
-  <h3 class="modal-title">Add a medical Encounter</h3>
+  <h3 class="modal-title">
+    <span ng-if="$ctrl.editing">Edit</span>
+    <span ng-if="!$ctrl.editing">Add</span>
+    a medical Encounter</h3>
 </div>
 <div class="modal-body">
   <form name="add-patient-form" class="form">
@@ -44,6 +47,7 @@
         </option>
       </select>
     </div>
+    {{$ctrl.Encounter}}
     <div class="form-group">
       <label>Pharmacy Order</label>
       <input ng-model="$ctrl.Encounter.PharmacyOrder" type="text" class="form-control" placeholder="Pharmacy Order">

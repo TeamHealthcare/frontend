@@ -19,7 +19,6 @@
         /**/
 
 
-
         /**
          * Implementation
          */
@@ -68,16 +67,17 @@
          * Add Patient
          *
          * @param patient patient to add as an object
-         * @param config optional Angular $http config object
+         * @param editing if we are editing an existing patient
          * @returns {Promise} a $q promise object containing an array of records
          */
-        function addPatient(patient, config) {
-            console.log('adding patient');
-            console.log('url: ' + URLS.base + URLS.addPatient);
-            console.log('The patient is');
-            console.log(patient);
-
-            return $http.post(URLS.base + URLS.addPatient, patient)
+        function addPatient(patient, editing) {
+            var method = editing ? 'PUT': 'POST';
+            var url = editing ? URLS.editPatient + '/' + patient.PatientId : URLS.addPatient;
+            return $http( {
+                method: method,
+                url: URLS.base + url,
+                data: patient
+            })
         }
 
         /**
@@ -94,16 +94,17 @@
          * Add Medical Encounter
          *
          * @param encounter encounter to add as an object
-         * @param config optional Angular $http config object
+         * @param editing if we are editing an existing encounter
          * @returns {Promise} a $q promise object containing an array of records
          */
-        function addEncounter(encounter, config) {
-            console.log('adding encounter');
-            console.log('url: ' + URLS.base + URLS.addEncounter);
-            console.log('The encounter is');
-            console.log(encounter);
-
-            return $http.post(URLS.base + URLS.addEncounter, encounter)
+        function addEncounter(encounter, editing) {
+            var method = editing ? 'PUT': 'POST';
+            var url = editing ? URLS.editEncounter + '/' + encounter.MedicalEncounterId : URLS.addEncounter;
+            return $http( {
+                method: method,
+                url: URLS.base + url,
+                data: encounter
+            })
         }
 
     }
