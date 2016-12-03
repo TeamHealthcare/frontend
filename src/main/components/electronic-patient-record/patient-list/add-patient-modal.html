@@ -1,5 +1,8 @@
 <div class="modal-header">
-  <h3 class="modal-title">Add a patient</h3>
+  <h3 class="modal-title">
+    <span ng-if="$ctrl.editing">Edit</span>
+    <span ng-if="!$ctrl.editing">Add</span>
+    a patient</h3>
 </div>
 <div class="modal-body">
   <form name="addPatientForm" class="form">
