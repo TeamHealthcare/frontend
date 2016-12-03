@@ -3,7 +3,7 @@
 <div class="well">
   <ul>
     <li class="list-group-item">
-      <strong>Date:</strong> {{$ctrl.encounter.EncounterDate}}
+      <strong>Date:</strong> {{$ctrl.encounter.EncounterDate | date: 'short'}}
     </li>
     <li class="list-group-item">
       <strong>Practitioner: </strong> {{$ctrl.encounter.Practitioner}}

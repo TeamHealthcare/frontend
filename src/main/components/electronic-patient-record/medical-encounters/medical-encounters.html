@@ -7,13 +7,15 @@
 
   <div class="row">
     <div class="col-md-4">
-      <h3>Medical Encounters</h3>
       <div class="well">
         <ul class="list-group">
-          <li class="list-item" ng-repeat="medicalEncounter in $ctrl.medicalEncounters">
-            <a href="" ng-click="$ctrl.currentMedicalEncounter = medicalEncounter; $ctrl.selected = true">
-              Date: {{medicalEncounter.EncounterDate}} - {{medicalEncounter.Complaint}}
-            </a>
+          <h3 class="list-group-item-heading">Medical Encounters</h3>
+          <li class="list-group-item"
+              role="button"
+              ng-class="{active: medicalEncounter.MedicalEncounterId == $ctrl.currentMedicalEncounter.MedicalEncounterId}"
+              ng-repeat="medicalEncounter in $ctrl.medicalEncounters"
+              ng-click="$ctrl.currentMedicalEncounter = medicalEncounter; $ctrl.selected = true">
+              <strong>Date:</strong> {{medicalEncounter.EncounterDate | date : 'short'}} - {{medicalEncounter.Complaint}}
           </li>
         </ul>
       </div>
