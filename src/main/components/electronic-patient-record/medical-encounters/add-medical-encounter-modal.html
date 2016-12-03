@@ -5,11 +5,16 @@
     a medical Encounter</h3>
 </div>
 <div class="modal-body">
-  <form name="add-patient-form" class="form">
+  <form name="addMedicalEncounterForm" class="form">
 
+    <!--Patient-->
     <div class="form-group">
       <label>Patient</label>
-      <select name="patient" ng-model="$ctrl.Encounter.PatientId">
+      <span ng-messages="addMedicalEncounterForm.patient.$error"
+            ng-if="addMedicalEncounterForm.patient.$touched">
+        <span class="label label-danger" ng-message="required">Patient name is required</span>
+      </span>
+      <select name="patient" ng-model="$ctrl.Encounter.PatientId" required>
         <option
             ng-repeat="patient in $ctrl.patients"
             value="{{patient.PatientId}}">
@@ -17,29 +22,69 @@
         </option>
       </select>
     </div>
+
+
+    <!--Date-->
     <div class="form-group">
       <label>Date</label>
-      <input ng-model="$ctrl.Encounter.EncounterDate" type="date" class="form-control" placeholder="Date">
+      <span ng-messages="addMedicalEncounterForm.Date.$error"
+            ng-if="addMedicalEncounterForm.Date.$touched">
+        <span class="label label-danger" ng-message="required">Date is required</span>
+        <span class="label label-danger" ng-message="date">Not a valid date</span>
+        <span class="label label-danger" ng-message="max">Date cannot be after today</span>
+      </span>
+      <input ng-model="$ctrl.Encounter.EncounterDate" name="Date" type="date" class="form-control" placeholder="Date">
     </div>
+
+
+    <!--Practitioner-->
     <div class="form-group">
       <label>Practitioner</label>
-      <input ng-model="$ctrl.Encounter.Practitioner" type="number" class="form-control" placeholder="Practitioner">
+      <span ng-messages="addMedicalEncounterForm.practitioner.$error"
+            ng-if="addMedicalEncounterForm.practitioner.$touched">
+        <span class="label label-danger" ng-message="required">Practitioner name is required</span>
+      </span>
+      <input ng-model="$ctrl.Encounter.Practitioner" name="practitioner" type="number" class="form-control" placeholder="Practitioner" required>
     </div>
+
+
+    <!--Complaint-->
     <div class="form-group">
       <label>Complaint</label>
-      <input ng-model="$ctrl.Encounter.Complaint" type="text" class="form-control" placeholder="Complaint">
+      <span ng-messages="addMedicalEncounterForm.complaint.$error"
+            ng-if="addMedicalEncounterForm.complaint.$touched">
+        <span class="label label-danger" ng-message="required">Complaint is required</span>
+      </span>
+      <input ng-model="$ctrl.Encounter.Complaint" name="complaint" type="text" class="form-control" placeholder="Complaint" required>
     </div>
+
+
+    <!--Vital Signs-->
     <div class="form-group">
       <label>Vital Signs</label>
-      <input ng-model="$ctrl.Encounter.VitalSigns" type="text" class="form-control" placeholder="Vital Signs">
+      <span ng-messages="addMedicalEncounterForm.vitalSigns.$error"
+            ng-if="addMedicalEncounterForm.vitalSigns.$touched">
+        <span class="label label-danger" ng-message="required">Vital Signs are required</span>
+      </span>
+      <input ng-model="$ctrl.Encounter.VitalSigns" name="vitalSigns" type="text" class="form-control" placeholder="Vital Signs">
     </div>
+
+
+    <!--Notes-->
     <div class="form-group">
       <label>Notes</label>
       <input ng-model="$ctrl.Encounter.Notes" type="text" class="form-control" placeholder="Notes">
     </div>
+
+
+    <!--Lab Order-->
     <div class="form-group">
       <label>Lab Order</label>
-      <select name="labOrder" ng-model="$ctrl.Encounter.LabOrderId">
+      <span ng-messages="addMedicalEncounterForm.labOrder.$error"
+            ng-if="addMedicalEncounterForm.labOrder.$touched">
+        <span class="label label-danger" ng-message="required">Patient name is required</span>
+      </span>
+      <select name="labOrder" ng-model="$ctrl.Encounter.LabOrderId" required>
         <option
             ng-repeat="labOrder in $ctrl.labOrders"
             value="{{labOrder.LabOrderId}}">
@@ -47,30 +92,64 @@
         </option>
       </select>
     </div>
-    {{$ctrl.Encounter}}
+
+
+    <!--Pharmacy Order-->
     <div class="form-group">
       <label>Pharmacy Order</label>
-      <input ng-model="$ctrl.Encounter.PharmacyOrder" type="text" class="form-control" placeholder="Pharmacy Order">
+      <span ng-messages="addMedicalEncounterForm.pharmacyOrder.$error"
+            ng-if="addMedicalEncounterForm.pharmacyOrder.$touched">
+        <span class="label label-danger" ng-message="required">Pharmacy order is required</span>
+      </span>
+      <input ng-model="$ctrl.Encounter.PharmacyOrder" name="pharmacyOrder" type="text" class="form-control" placeholder="Pharmacy Order">
     </div>
+
+
+    <!--Diagnosis-->
     <div class="form-group">
-      <label>diagnosis</label>
-      <input ng-model="$ctrl.Encounter.Diagnosis" type="text" class="form-control" placeholder="Diagnosis">
+      <label>Diagnosis</label>
+      <span ng-messages="addMedicalEncounterForm.Diagnosis.$error"
+            ng-if="addMedicalEncounterForm.Diagnosis.$touched">
+        <span class="label label-danger" ng-message="required">Diagnosis is required</span>
+      </span>
+      <input ng-model="$ctrl.Encounter.Diagnosis" name="Diagnosis" type="text" class="form-control" placeholder="Diagnosis">
     </div>
+
+
+    <!--Treatment Plan-->
     <div class="form-group">
       <label>Treatment Plan</label>
-      <input ng-model="$ctrl.Encounter.TreatmentPlan" type="text" class="form-control" placeholder="Treatment Plan">
+      <span ng-messages="addMedicalEncounterForm.TreatmentPlan.$error"
+            ng-if="addMedicalEncounterForm.TreatmentPlan.$touched">
+        <span class="label label-danger" ng-message="required">Patient name is required</span>
+      </span>
+      <input ng-model="$ctrl.Encounter.TreatmentPlan" name="TreatmentPlan" type="text" class="form-control" placeholder="Treatment Plan" required>
     </div>
+
+    <!--Referral-->
     <div class="form-group">
       <label>Referral</label>
-      <input ng-model="$ctrl.Encounter.Referral" type="text" class="form-control" placeholder="Referral">
+      <span ng-messages="addMedicalEncounterForm.Referral.$error"
+            ng-if="addMedicalEncounterForm.Referral.$touched">
+        <span class="label label-danger" ng-message="required">Referral is required</span>
+      </span>
+      <input ng-model="$ctrl.Encounter.Referral" name="Referral" type="text" class="form-control" placeholder="Referral" required>
     </div>
+
+
+    <!--Follow Up Notes-->
     <div class="form-group">
       <label>Follow Up Notes</label>
-      <input ng-model="$ctrl.Encounter.FollowUpNotes" type="text" class="form-control" placeholder="Follow Up Notes">
+      <span ng-messages="addMedicalEncounterForm.followUp.$error"
+            ng-if="addMedicalEncounterForm.followUp.$touched">
+        <span class="label label-danger" ng-message="required">Follow up notes are required</span>
+      </span>
+      <input ng-model="$ctrl.Encounter.FollowUpNotes" name="followUp" type="text" class="form-control" placeholder="Follow Up Notes" required>
     </div>
   </form>
   <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+    <span class="alert alert-warning" ng-if="addMedicalEncounterForm.$dirty && addMedicalEncounterForm.$invalid">Please complete the form before submitting.</span>
+    <button class="btn btn-primary" type="button" ng-click="addMedicalEncounterForm.$valid && $ctrl.ok()">OK</button>
     <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
   </div>
 </div>

@@ -2,60 +2,156 @@
   <h3 class="modal-title">Add a patient</h3>
 </div>
 <div class="modal-body">
-  <form name="add-patient-form" class="form">
+  <form name="addPatientForm" class="form">
 
+    <!--Patient Name -->
     <div class="form-group">
       <label>Name</label>
-      <input ng-model="$ctrl.patient.PatientName" type="text" class="form-control" placeholder="Full Name">
+      <span ng-messages="addPatientForm.PatientName.$error"
+            ng-if="addPatientForm.PatientName.$touched">
+        <span class="label label-danger" ng-message="required">Your name is required</span>
+      </span>
+      <input ng-model="$ctrl.patient.PatientName"
+             name="PatientName"
+             type="text"
+             class="form-control"
+             placeholder="Full Name"
+             required>
+
     </div>
 
+
+    <!--Patient Address-->
     <div class="form-group">
       <label>Address</label>
-      <input ng-model="$ctrl.patient.Address" type="text" class="form-control" placeholder="Address">
+      <span ng-messages="addPatientForm.Address.$error"
+            ng-if="addPatientForm.Address.$touched">
+        <span class="label label-danger" ng-message="required">Your address is required</span>
+      </span>
+      <input ng-model="$ctrl.patient.Address"
+             name="Address"
+             type="text"
+             class="form-control"
+             placeholder="Address" required>
     </div>
+
+
+    <!--Date of Birth-->
     <div class="form-group">
       <label>Date of Birth</label>
-      <input ng-model="$ctrl.patient.DateOfBirth" type="date" class="form-control" placeholder="Date of Birth">
+      <!--Validation-->
+      <span ng-messages="addPatientForm.DateOfBirth.$error"
+            ng-if="addPatientForm.DateOfBirth.$touched">
+        <span class="label label-danger" ng-message="required">Your Date of Birth is required</span>
+        <span class="label label-danger" ng-message="date">Not a valid date</span>
+        <span class="label label-danger" ng-message="max">Date cannot be after today</span>
+      </span>
+      <!--End Validation-->
+      <input ng-model="$ctrl.patient.DateOfBirth" name="DateOfBirth" type="date" max="{{$ctrl.DateService.today() | date:'yyyy-MM-dd'}}" class="form-control" placeholder="Date of Birth" required>
     </div>
+
+
+    <!--Gender-->
     <div class="form-group">
       <label>Gender</label>
-      <input ng-model="$ctrl.patient.Gender" name="gender" type="radio" class="form-control" value="m">Male
-      <input ng-model="$ctrl.patient.Gender" name="gender" type="radio" class="form-control" value="f">Female
+      <!--Validation-->
+      <span ng-messages="addPatientForm.Gender.$error"
+            ng-if="addPatientForm.Gender.$touched">
+        <span class="label label-danger" ng-message="required">Your gender is required</span>
+      </span>
+      <!--End Validation-->
+      <input ng-model="$ctrl.patient.Gender" name="Gender" type="radio" class="form-control" value="m" required>Male
+      <input ng-model="$ctrl.patient.Gender" name="Gender" type="radio" class="form-control" value="f" required>Female
     </div>
+
+
+    <!--Insurance Carrier-->
     <div class="form-group">
       <label>Insurance Carrier</label>
-      <select name="insuranceCarrier" ng-model="$ctrl.patient.InsuranceCarrierId">
+      <!--Validation-->
+      <span ng-messages="addPatientForm.insuranceCarrier.$error"
+            ng-if="addPatientForm.insuranceCarrier.$touched">
+        <span class="label label-danger" ng-message="required">Please select an insurance carrier</span>
+      </span>
+      <!--End Validation-->
+      <select name="insuranceCarrier" ng-model="$ctrl.patient.InsuranceCarrierId" required>
         <option
-                ng-repeat="insuranceCarrier in $ctrl.insuranceCarriers"
-                value="{{insuranceCarrier.InsuranceCarrierId}}">
+            ng-repeat="insuranceCarrier in $ctrl.insuranceCarriers"
+            value="{{insuranceCarrier.InsuranceCarrierId}}" required="">
           {{insuranceCarrier.Carrier}}
         </option>
       </select>
     </div>
+
+
+    <!--Phone Number-->
     <div class="form-group">
       <label>Phone Number</label>
-      <input ng-model="$ctrl.patient.PhoneNumber" type="text" class="form-control" placeholder="Phone Number">
+      <!--Validation-->
+      <span ng-messages="addPatientForm.PhoneNumber.$error"
+            ng-if="addPatientForm.PhoneNumber.$touched">
+        <span class="label label-danger" ng-message="required">A phone number is required</span>
+        <span class="label label-danger" ng-message="pattern">You must enter a valid 10 digit phone number</span>
+  </span>
+      <!--End Validation-->
+      <input ng-model="$ctrl.patient.PhoneNumber" name="PhoneNumber" type="text" class="form-control" placeholder="Phone Number" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" required>
     </div>
+
+
+    <!--City-->
     <div class="form-group">
       <label>City</label>
-      <input ng-model="$ctrl.patient.City" type="text" class="form-control" placeholder="City">
+      <!--Validation-->
+      <span ng-messages="addPatientForm.City.$error"
+            ng-if="addPatientForm.City.$touched">
+        <span class="label label-danger" ng-message="required">Please enter a City</span>
+      </span>
+      <!--End Validation-->
+      <input ng-model="$ctrl.patient.City" name="City" type="text" class="form-control" placeholder="City">
     </div>
+
+    <!--State-->
     <div class="form-group">
       <label>State</label>
-      <input ng-model="$ctrl.patient.State" type="text" class="form-control" placeholder="State">
+      <!--Validation-->
+      <span ng-messages="addPatientForm.State.$error"
+            ng-if="addPatientForm.State.$touched">
+        <span class="label label-danger" ng-message="required">Please enter a valid state</span>
+      </span>
+      <!--End Validation-->
+      <input length="2" name="State" ng-model="$ctrl.patient.State" type="text" class="form-control" placeholder="CA" required>
     </div>
+
+
+    <!--Zip Code-->
     <div class="form-group">
       <label>Zip Code</label>
-      <input ng-model="$ctrl.patient.ZipCode" type="text" class="form-control" placeholder="Zip Code">
+      <!--Validation-->
+      <span ng-messages="addPatientForm.ZipCode.$error"
+            ng-if="addPatientForm.ZipCode.$touched">
+        <span class="label label-danger" ng-message="required">Zip code is required</span>
+              <span class="label label-danger" ng-message="pattern">You must enter a valid zip code (XXXXX or XXXXX-XXXX)</span>
+      </span>
+      <!--End Validation-->
+      <input ng-model="$ctrl.patient.ZipCode" name="ZipCode" type="text" class="form-control" placeholder="Zip Code" ng-pattern="/^\d{5}(?:[-\s]\d{4})?$/" required>
     </div>
+
+
+    <!--Physician-->
     <div class="form-group">
       <label>Physician</label>
-      <input ng-model="$ctrl.patient.Physician" type="text" class="form-control" placeholder="Physician">
+      <!--Validation-->
+      <span ng-messages="addPatientForm.Physician.$error"
+            ng-if="addPatientForm.Physician.$touched">
+        <span class="label label-danger" ng-message="required">Physician is Required</span>
+      </span>
+      <!--End Validation-->
+      <input ng-model="$ctrl.patient.Physician" name="Physician" type="text" class="form-control" placeholder="Physician" required>
     </div>
   </form>
   <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+    <span class="alert alert-warning" ng-if="addPatientForm.$dirty && addPatientForm.$invalid">Please complete the form before submitting.</span>
+    <button class="btn btn-primary" type="button" ng-click="addPatientForm.$valid && $ctrl.ok()">OK</button>
     <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
   </div>
 </div>
-<tt>{{$ctrl.patient}}</tt>

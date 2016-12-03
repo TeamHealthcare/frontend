@@ -21,7 +21,6 @@
         ctrl.$onInit = getPatientInfo;
 
         function edit(patient) {
-            console.log('edit');
             ctrl.onEdit({ patient: ctrl.patient });
         }
 
