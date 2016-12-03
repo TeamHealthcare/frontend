@@ -15,6 +15,8 @@
          */
         ctrl.patients = [];
         ctrl.currentPatient = new Patient();
+        ctrl.DataService = DataService;
+        ctrl.toaster = toaster;
 
         ctrl.openAddPatientModal = openAddPatientModal;
         ctrl.getData = getData;
@@ -31,7 +33,10 @@
             DataService.getPatientRecords()
                 .then(function (response) {
                     if (response.status == '200') {
-                        ctrl.patients = response.data.payload;
+                        ctrl.patients = response.data.payload.map(function (patient) {
+                            patient.DateOfBirth = new Date(patient.DateOfBirth);
+                            return patient
+                        })
                     } else {
                         displayError()
                     }
@@ -54,8 +59,12 @@
                 }
             });
 
-            addPatientModalInstance.result.then(function (patient) {
+            addPatientModalInstance.result.then(function (patient, editing) {
                 ctrl.getData();
+                var message = "You successfully ";
+                message += editing ? 'edited' : 'added';
+                message += ' a patient';
+                ctrl.toaster.success(message)
             }, function () {
                 //modal dismissed
             });

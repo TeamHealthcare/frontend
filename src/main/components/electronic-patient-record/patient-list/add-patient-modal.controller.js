@@ -3,51 +3,36 @@
     angular.module('hcare')
         .controller('addPatientModalController', addPatientModalController);
 
-    addPatientModalController.$inject = ['$uibModalInstance', 'DataService', 'patient'];
-    function addPatientModalController($uibModalInstance, DataService, patient) {
+    addPatientModalController.$inject = ['$uibModalInstance', 'DataService', 'patient', 'DateService'];
+    function addPatientModalController($uibModalInstance, DataService, patient, DateService) {
         var ctrl = this;
 
+        /**
+         * Public API
+         *
+         */
         ctrl.editing = false;
         ctrl.patient;
         ctrl.insuranceCarriers = [];
         ctrl.getInsuranceCarriers = getInsuranceCarriers;
         ctrl.ok = ok;
         ctrl.cancel = cancel;
+        ctrl.DateService = DateService;
 
         /**
-         * Get data for modal
+         * Get data for modal and set patient if we are editing
          */
         getInsuranceCarriers();
+        if (patient) { ctrl.editing = true }
+        ctrl.patient = patient || {};
+
 
         /**
-         * Check if we have a patient, that means we will be editing a current patient
-         * instead of creating a new one. If that is the case, we need to do a couple of things.
-         * 1. Convert the date of birth string into a Date object
+         * Implementation
          */
-        if (patient) {
-            ctrl.editing = true;
-            //1
-            var date = angular.copy(patient.DateOfBirth);
-            patient.DateOfBirth = new Date(date);
-            ctrl.editing = true;
-        }
-
-
-        ctrl.patient = patient || {
-            PatientName: 'Robert Smith',
-            Address: '123 Main st',
-            DateOfBirth: new Date('02-23-2012'),
-            Gender: 'male',
-            InsuranceCarrierId: 225,
-            PhoneNumber: '6194444444',
-            City: 'San Diego',
-            State: 'CA',
-            ZipCode: '92101',
-            Physician: 'Applesauce'
-        };
-
-
+//-------------------------------------------------------------------------------//
         /**
+         * Get Insurance Carriers to set the select options properly
          *
          */
         function getInsuranceCarriers() {
@@ -74,12 +59,18 @@
                 .then(function (response) {
                     'Back from adding a patient';
                     console.log(response);
+
                 })
                 .catch(function (error) {
                     console.log('There was an error adding');
                     console.log(error);
                 })
-            $uibModalInstance.close(ctrl.patient);
+            //We want to communicate whether we edited a current patient or added a new one so we can respond appropriately.
+            if (ctrl.editing) {
+                $uibModalInstance.close(ctrl.patient, true);
+            } else {
+                $uibModalInstance.close(ctrl.patient, false);
+            }
         }
 
         function cancel() {

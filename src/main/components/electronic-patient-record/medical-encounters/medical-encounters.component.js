@@ -22,13 +22,12 @@
         function getData() {
            DataService.getMedicalEncounters()
                .then(function (response) {
-                   console.log(response);
                    ctrl.medicalEncounters = response.data.payload;
                })
                .catch(function (error) {
                    console.log('There was an error');
                    console.log(error);
-                   // toaster.pop('error', error.data)
+                   toaster.pop('error', error.data)
                })
         }
 
