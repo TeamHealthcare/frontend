@@ -22,7 +22,10 @@
         function getData() {
            DataService.getMedicalEncounters()
                .then(function (response) {
-                   ctrl.medicalEncounters = response.data.payload;
+                   ctrl.medicalEncounters = response.data.payload.map(function (encounter) {
+                       encounter.EncounterDate = new Date(encounter.EncounterDate);
+                       return encounter
+                   });
                })
                .catch(function (error) {
                    console.log('There was an error');
