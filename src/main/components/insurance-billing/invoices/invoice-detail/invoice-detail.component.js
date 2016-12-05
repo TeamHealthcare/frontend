@@ -28,7 +28,7 @@
         }
         
         function edit() {
-        	alert("Printing currently unsupported.");
+            toaster.pop('error',"Printing currently unsupported.");
         }
 
         function getserviceInfo(status) {

@@ -49,6 +49,10 @@
 
             addMedicalEncounterModalInstance.result.then(function (encounter) {
                 ctrl.getData();
+                var message = "You successfully ";
+                message += editing ? 'edited' : 'added';
+                message += ' an encounter';
+                ctrl.toaster.success(message)
             }, function () {
                 //modal dismissed
             });

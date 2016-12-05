@@ -15,6 +15,11 @@
 
         ctrl.carrier;
         ctrl.edit = edit;
+        ctrl.status = {
+            0: 'Pays on time',
+            1: 'Late with payments',
+            2: 'Difficult to get payment'
+        };
         /**
         Component initialization
          */

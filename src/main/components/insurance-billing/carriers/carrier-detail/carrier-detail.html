@@ -1,4 +1,4 @@
-<h3>Carrier Detail</h3><h5>Status [0: Pays on time, 1: Late with payments, 2: Difficult to get payment]</h5>
+<h3>Carrier Detail</h3>
 <div class="well">
   <button class="glyphicon glyphicon-edit btn btn-sm btn-primary" ng-click="$ctrl.edit($ctrl.carrier)">Edit</button>
   <ul class="list-group">
@@ -9,7 +9,7 @@
       <strong>Address:</strong> {{$ctrl.carrier.Address}}
     </li>
     <li class="list-group-item">
-      <strong>Status:</strong> {{$ctrl.carrier.Active}}
+      <strong>Status:</strong> {{$ctrl.status[$ctrl.carrier.Active]}}
     </li>
   </ul>
 </div>
