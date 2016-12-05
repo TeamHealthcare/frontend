@@ -4,8 +4,8 @@
         controller: InsuranceBillingController
     });
 
-    InsuranceBillingController.$inject = [];
-    function InsuranceBillingController() {
+    InsuranceBillingController.$inject = ['DataService'];
+    function InsuranceBillingController(DataService) {
         var ctrl = this;
 
 

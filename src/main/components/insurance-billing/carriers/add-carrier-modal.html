@@ -1,0 +1,65 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    <span ng-if="$ctrl.editing">Edit</span>
+    <span ng-if="!$ctrl.editing">Add</span>
+    a carrier</h3>
+</div>
+<div class="modal-body">
+  <form name="addCarrierForm" class="form">
+
+    <!--Patient Name -->
+    <div class="form-group">
+      <label>Name</label>
+      <span ng-messages="addCarrierForm.Carrier.$error"
+            ng-if="addCarrierForm.Carrier.$touched">
+        <span class="label label-danger" ng-message="required">Carrier name is required</span>
+      </span>
+      <input ng-model="$ctrl.carrier.Carrier"
+             name="CarrierName"
+             type="text"
+             class="form-control"
+             placeholder="Carrier Name"
+             required>
+
+    </div>
+
+
+    <!--Carrier Address-->
+    <div class="form-group">
+      <label>Address</label>
+      <span ng-messages="addCarrierForm.Address.$error"
+            ng-if="addCarrierForm.Address.$touched">
+        <span class="label label-danger" ng-message="required">Address is required</span>
+      </span>
+      <input ng-model="$ctrl.carrier.Address"
+             name="Address"
+             type="text"
+             class="form-control"
+             placeholder="Address" required>
+    </div>
+    
+    <!--Active Status-->
+    <div class="form-group">
+      <label>Insurance Carrier</label>
+      <!--Validation-->
+      <span ng-messages="addCarrierForm.activeStatus.$error"
+            ng-if="addCarrierForm.activeStatus.$touched">
+        <span class="label label-danger" ng-message="required">Please select an active status</span>
+      </span>
+      <!--End Validation-->
+      <select name="activeStatus" ng-model="$ctrl.carrier.Active" required>
+        <option
+            ng-repeat="activeStatus in $ctrl.activeStatuses"
+            value="{{activeStatus}}" required="">
+          {{activeStatus}}
+        </option>
+      </select>
+    </div>
+
+  </form>
+  <div class="modal-footer">
+    <span class="alert alert-warning" ng-if="addCarrierForm.$dirty && addCarrierForm.$invalid">Please complete the form before submitting.</span>
+    <button class="btn btn-primary" type="button" ng-click="addCarrierForm.$valid && $ctrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+  </div>
+</div>

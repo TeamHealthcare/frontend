@@ -1,0 +1,38 @@
+<button class="btn btn-primary"
+        ng-click="$ctrl.openAddCarrierModal()">
+  <span class="glyphicon glyphicon-plus"></span> Add Carrier
+</button>
+
+<div class="container container-fluid">
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="well">
+        <ul class="list-group">
+          <h3 class="list-group-item-heading">Carrier List</h3>
+          <div class="container">
+            <span class="glyphicon glyphicon-search"></span>
+            <input type="search" ng-model="$ctrl.query" placeholder="Filter by name">
+          </div>
+          <li class="list-group-item"
+              role="button"
+              ng-class="{active: carrier.InsuranceCarrierId == $ctrl.currentCarrier.InsuranceCarrierId}"
+              ng-repeat="carrier in $ctrl.carriers | filter: {Carrier: $ctrl.query} as results"
+              ng-click="$ctrl.currentCarrier = carrier;
+              $ctrl.selected = true">
+              {{carrier.Carrier}}
+          </li>
+          <li class="alert alert-warning" ng-if="results.length === 0">
+            <strong>No results found...</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <carrier-detail ng-if="$ctrl.selected"
+                      carrier="$ctrl.currentCarrier"
+                      on-edit="$ctrl.openAddCarrierModal($ctrl.currentCarrier)"
+      ></carrier-detail>
+    </div>
+  </div>
+</div>

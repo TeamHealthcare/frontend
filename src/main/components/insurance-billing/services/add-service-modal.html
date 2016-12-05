@@ -1,0 +1,37 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    <span ng-if="$ctrl.editing">Edit</span>
+    <span ng-if="!$ctrl.editing">Add</span>
+    a medical Service</h3>
+</div>
+<div class="modal-body">
+  <form name="addServiceForm" class="form">
+
+    <!--Description-->
+    <div class="form-group">
+      <label>Description</label>
+      <span ng-messages="addServiceForm.Description.$error"
+            ng-if="addMedicalEncounterForm.practitioner.$touched">
+        <span class="label label-danger" ng-message="required">Practitioner name is required</span>
+      </span>
+      <input ng-model="$ctrl.service.Description" name="description" type="text" class="form-control" placeholder="Description..." required>
+    </div>
+
+
+    <!--Cost-->
+    <div class="form-group">
+      <label>Cost</label>
+      <span ng-messages="addServiceForm.Cost.$error"
+            ng-if="addServiceForm.Cost.$touched">
+        <span class="label label-danger" ng-message="required">Cost is required</span>
+      </span>
+      <input ng-model="$ctrl.service.Cost" name="cost" type="text" class="form-control" placeholder="250.00" required>
+    </div>
+
+  </form>
+  <div class="modal-footer">
+    <span class="alert alert-warning" ng-if="addServiceForm.$dirty && addServiceForm.$invalid">Please complete the form before submitting.</span>
+    <button class="btn btn-primary" type="button" ng-click="addServiceForm.$valid && $ctrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+  </div>
+</div>

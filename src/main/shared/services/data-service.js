@@ -16,8 +16,21 @@
         this.getLabOrders = getLabOrders;
         this.addPatient = addPatient;
         this.addEncounter = addEncounter;
+        
+        this.addCarrier = addCarrier;
+        this.getCarrierById = getCarrierById;
+        this.getServices = getServices;
+        this.getService = getService;
         /**/
+        
+        function getServices(url,config) {
+        	return $http.get(URLS.base + URLS.services);
+        }
 
+        function getService(url,config) {
+        	return $http.get(URLS.base + URLS.service + "/" + config);
+        }
+        
 
         /**
          * Implementation
@@ -78,6 +91,33 @@
                 url: URLS.base + url,
                 data: patient
             })
+        }
+        
+        /**
+         * Add Carrier
+         *
+         * @param carrier carrier to add as an object
+         * @param editing if we are editing an existing carrier
+         * @returns {Promise} a $q promise object containing an array of records
+         */
+        function addCarrier(carrier, editing) {
+            var method = editing ? 'PUT': 'POST';
+            var url = editing ? URLS.editCarrier + '/' + carrier.InsuranceCarrierId : URLS.addCarrier;
+            return $http( {
+                method: method,
+                url: URLS.base + url,
+                data: carrier
+            })
+        }
+        
+        /**
+         * Get a single carrier information
+         *
+         * @param config optional Angular $http config object
+         * @returns {Promise} a $q promise object containing a carrier
+         */
+        function getCarrierById(config) {
+            return $http.get(URLS.base + URLS.getCarrier + config)
         }
 
         /**
