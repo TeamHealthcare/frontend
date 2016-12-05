@@ -25,10 +25,17 @@
         function getData() {
            DataService.getServices()
                .then(function (response) {
-                   ctrl.services = response.data.payload.map(function (service) {
-                	   console.log("Remove if unecessary")
-                       return service
-                   });
+            	   ctrl.services = [];
+            	   for(var i = 0; i < response.data.payload.length; i++){
+            		   for(var loop = 0; loop < ctrl.services.length; loop++){
+            			   if(ctrl.services[loop].Description === response.data.payload[i].Description){
+            				   break;
+            			   }
+            		   }
+            		   if(loop === ctrl.services.length){
+            			   ctrl.services.push(response.data.payload[i]);
+            		   }
+            	   }
                })
                .catch(function (error) {
                    console.log('There was an error');

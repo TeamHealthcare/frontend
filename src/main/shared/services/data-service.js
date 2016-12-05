@@ -20,15 +20,40 @@
         this.addCarrier = addCarrier;
         this.getCarrierById = getCarrierById;
         this.getServices = getServices;
-        this.getService = getService;
+        this.addService = addService;
+        this.getServicesById = getServicesById;
         /**/
         
         function getServices(url,config) {
         	return $http.get(URLS.base + URLS.services);
         }
-
-        function getService(url,config) {
-        	return $http.get(URLS.base + URLS.service + "/" + config);
+        
+        function getServicesById(config){
+        	return $http.get(URLS.base + URLS.servicesByCarrier + "/" + config);
+        }
+        
+        function addService(service, editing) {
+        	if(editing){
+        		var serviceConvert = {
+            		insurancecarrierid: service.InsuranceCarrierId,
+            		description: service.Description,
+            		cost: service.Cost
+            	}
+        	} else {
+        		var serviceConvert = {
+            		insurancecarrierid: "3",
+            		description: service.Description,
+            		cost: parseInt(service.Cost)
+            	}
+        	}
+        	
+            var method = editing ? 'PUT': 'POST';
+            var url = editing ? URLS.updateService + '/' + service.ServiceId : URLS.addService;
+            return $http( {
+                method: method,
+                url: URLS.base + url,
+                data: serviceConvert
+            })
         }
         
 
@@ -101,12 +126,26 @@
          * @returns {Promise} a $q promise object containing an array of records
          */
         function addCarrier(carrier, editing) {
+        	if(editing){
+        		var carrierConvert = {
+            		"carrier": carrier.Carrier,
+            		"address": carrier.Address,
+            		"active": carrier.Active
+            	}
+        	} else {
+        		var carrierConvert = {
+            		"carrier": carrier.Carrier,
+            		"address": carrier.Address,
+            		"active": parseInt(carrier.Active)
+            	}
+        	}
+        	
             var method = editing ? 'PUT': 'POST';
             var url = editing ? URLS.editCarrier + '/' + carrier.InsuranceCarrierId : URLS.addCarrier;
             return $http( {
                 method: method,
                 url: URLS.base + url,
-                data: carrier
+                data: carrierConvert
             })
         }
         

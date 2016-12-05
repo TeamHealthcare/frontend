@@ -1,26 +1,21 @@
-<button class="btn btn-primary"
-        ng-click="$ctrl.openAddServiceModal()">
-  <span class="glyphicon glyphicon-plus"></span> Add Service
-</button>
-
 <div class="container container-fluid">
 
   <div class="row">
     <div class="col-md-4">
       <div class="well">
         <ul class="list-group">
-          <h3 class="list-group-item-heading">Services</h3>
+          <h3 class="list-group-item-heading">Invoices</h3>
           <div class="container">
             <span class="glyphicon glyphicon-search"></span>
-            <input type="search" ng-model="$ctrl.query" placeholder="Filter by name">
+            <input type="search" ng-model="$ctrl.query" placeholder="Filter by Carrier">
           </div>
           <li class="list-group-item"
               role="button"
-              ng-class="{active: service.ServiceId == $ctrl.currentService.ServiceId}"
-              ng-repeat="service in $ctrl.services | filter: {Description: $ctrl.query} as results"
-              ng-click="$ctrl.currentService = service;
+              ng-class="{active: carrier.InsuranceCarrierId == $ctrl.currentCarrier.InsuranceCarrierId}"
+              ng-repeat="carrier in $ctrl.carriers | filter: {Carrier: $ctrl.query} as results"
+              ng-click="$ctrl.currentCarrier = carrier;
               $ctrl.selected = true">
-              {{service.Description}}
+              {{carrier.Carrier}}
           </li>
           <li class="alert alert-warning" ng-if="results.length === 0">
             <strong>No results found...</strong>
@@ -29,10 +24,10 @@
       </div>
     </div>
     <div class="col-md-8">
-      <service-detail ng-if="$ctrl.selected"
-                                service="$ctrl.currentService"
-                                on-edit="$ctrl.openAddServiceModal($ctrl.currentService)"
-      ></service-detail>
+      <invoice-detail 
+      	ng-if="$ctrl.selected"
+        carrier="$ctrl.currentCarrier"
+      ></invoice-detail>
     </div>
   </div>
 </div>

@@ -12,5 +12,8 @@ angular.module('hcare')
         editCarrier: '/updatecarrier',
         getCarrier: '/carrier/',
         services : '/services',
-        service : 'service'
+        service : 'service',
+        addService : '/addservice',
+        updateService : '/updateservice',
+        servicesByCarrier: '/servicesbycarrier'
     });
